@@ -3,495 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dasturlash tillari</title>
+<title>Begimov — Portfolio</title>
 <style>
-  :root {
-    --bg: #f6f7fb;
-    --bg-soft: #eceef6;
-    --card: #ffffff;
-    --text: #1b1d2a;
-    --muted: #5d6275;
-    --border: #e0e3ee;
-    --accent: #5b5bf0;
-    --accent-2: #12b8a6;
-    --code-bg: #14161f;
-    --code-text: #e6e8f2;
-    --shadow: 0 6px 24px rgba(30, 35, 70, 0.08);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0f1117;
-      --bg-soft: #181b25;
-      --card: #171a24;
-      --text: #eceef6;
-      --muted: #9aa0b6;
-      --border: #272b3a;
-      --accent: #8b8bff;
-      --accent-2: #2fd6c3;
-      --code-bg: #0b0c12;
-      --code-text: #e6e8f2;
-      --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0f1117;
-    --bg-soft: #181b25;
-    --card: #171a24;
-    --text: #eceef6;
-    --muted: #9aa0b6;
-    --border: #272b3a;
-    --accent: #8b8bff;
-    --accent-2: #2fd6c3;
-    --code-bg: #0b0c12;
-    --code-text: #e6e8f2;
-    --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
-  }
-
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    transition: background .25s, color .25s;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
-
-  /* Header */
-  header.top {
-    position: sticky; top: 0; z-index: 20;
-    background: color-mix(in srgb, var(--bg) 85%, transparent);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-  }
-  .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 12px; }
-  .logo { font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 8px; }
-  .logo span.mark {
-    display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 9px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; font-size: .9rem;
-    font-family: Consolas, monospace;
-  }
-  .theme-btn {
-    border: 1px solid var(--border); background: var(--card); color: var(--text);
-    border-radius: 999px; padding: 7px 14px; cursor: pointer; font: inherit; font-size: .9rem;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .theme-btn:hover { border-color: var(--accent); }
-
-  /* Hero */
-  .hero { padding: 56px 0 28px; text-align: center; }
-  .hero h1 {
-    font-size: clamp(1.9rem, 5vw, 3.2rem); line-height: 1.15; margin: 0 0 14px; font-weight: 800;
-  }
-  .hero h1 .grad {
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .hero p { color: var(--muted); max-width: 640px; margin: 0 auto; font-size: 1.05rem; }
-  .stats { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
-  .stat {
-    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
-    padding: 10px 18px; box-shadow: var(--shadow); min-width: 120px;
-  }
-  .stat b { display: block; font-size: 1.4rem; color: var(--accent); }
-  .stat small { color: var(--muted); }
-
-  /* Controls */
-  .controls { margin: 22px 0 18px; display: flex; flex-direction: column; gap: 14px; }
-  .search {
-    position: relative;
-  }
-  .search input {
-    width: 100%; padding: 14px 16px 14px 46px; font: inherit; font-size: 1rem;
-    border-radius: 14px; border: 1px solid var(--border); background: var(--card); color: var(--text);
-    box-shadow: var(--shadow); outline: none;
-  }
-  .search input:focus { border-color: var(--accent); }
-  .search svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); }
-  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
-  .chip {
-    border: 1px solid var(--border); background: var(--card); color: var(--text);
-    padding: 7px 14px; border-radius: 999px; cursor: pointer; font: inherit; font-size: .9rem;
-    transition: all .15s;
-  }
-  .chip:hover { border-color: var(--accent); }
-  .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .sortbar { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; color: var(--muted); font-size: .92rem; }
-  .sortbar select {
-    font: inherit; padding: 6px 10px; border-radius: 10px; border: 1px solid var(--border);
-    background: var(--card); color: var(--text);
-  }
-
-  /* Grid */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; padding-bottom: 40px; }
-  .card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 20px;
-    box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 12px;
-    position: relative; overflow: hidden; transition: transform .2s, border-color .2s;
-  }
-  .card::before {
-    content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--c);
-  }
-  .card:hover { transform: translateY(-3px); border-color: var(--c); }
-  .card-head { display: flex; align-items: center; gap: 12px; }
-  .badge {
-    width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
-    display: grid; place-items: center; font-weight: 800; font-family: Consolas, monospace;
-    background: var(--c); color: var(--fg, #fff); font-size: 1rem;
-  }
-  .card h2 { margin: 0; font-size: 1.3rem; }
-  .meta { color: var(--muted); font-size: .86rem; }
-  .desc { margin: 0; font-size: .95rem; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag {
-    font-size: .78rem; padding: 3px 10px; border-radius: 999px;
-    background: var(--bg-soft); color: var(--muted); border: 1px solid var(--border);
-  }
-  .card h3 { font-size: .9rem; margin: 4px 0 0; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
-  .pros { margin: 0; padding-left: 0; list-style: none; font-size: .92rem; }
-  .pros li { padding-left: 22px; position: relative; margin: 3px 0; }
-  .pros li::before { content: "✓"; position: absolute; left: 2px; color: var(--accent-2); font-weight: 700; }
-  .code-box { background: var(--code-bg); border-radius: 12px; overflow: hidden; margin-top: auto; }
-  .code-top {
-    display: flex; justify-content: space-between; align-items: center; padding: 7px 12px;
-    font-size: .78rem; color: #9aa0b6; border-bottom: 1px solid rgba(255,255,255,.07);
-  }
-  .dots { display: flex; gap: 5px; }
-  .dots i { width: 9px; height: 9px; border-radius: 50%; display: block; }
-  .copy {
-    background: rgba(255,255,255,.08); color: #e6e8f2; border: 0; border-radius: 7px;
-    padding: 3px 10px; cursor: pointer; font: inherit; font-size: .78rem;
-  }
-  .copy:hover { background: rgba(255,255,255,.16); }
-  pre {
-    margin: 0; padding: 14px; overflow-x: auto; color: var(--code-text);
-    font-family: Consolas, "Cascadia Code", "Courier New", monospace; font-size: .84rem; line-height: 1.5;
-  }
-  .empty { text-align: center; color: var(--muted); padding: 50px 0; display: none; }
-
-  /* Compare table */
-  section.compare { padding: 10px 0 50px; }
-  section.compare h2 { font-size: 1.6rem; margin: 0 0 6px; }
-  section.compare p { color: var(--muted); margin: 0 0 16px; }
-  .table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); background: var(--card); box-shadow: var(--shadow); }
-  table { width: 100%; border-collapse: collapse; min-width: 560px; font-size: .92rem; }
-  th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--border); }
-  th { background: var(--bg-soft); font-weight: 700; }
-  tr:last-child td { border-bottom: 0; }
-  td .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
-
-  footer { border-top: 1px solid var(--border); padding: 24px 0; color: var(--muted); text-align: center; font-size: .9rem; }
-
-  .totop {
-    position: fixed; right: 16px; bottom: 16px; width: 44px; height: 44px; border-radius: 50%;
-    border: 0; background: var(--accent); color: #fff; font-size: 1.2rem; cursor: pointer;
-    box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: opacity .2s;
-  }
-  .totop.show { opacity: 1; pointer-events: auto; }
-
-  @media (max-width: 600px) {
-    .hero { padding: 36px 0 18px; }
-    .grid { grid-template-columns: 1fr; }
-    .theme-btn .lbl { display: none; }
-    .stat { min-width: 0; flex: 1 1 28%; padding: 8px 10px; }
-  }
+:root{--bg:#f6f7fb;--card:#fff;--fg:#1b1d2a;--mu:#5d6275;--bd:#e0e3ee;--ac:#5b5bf0}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1117;--card:#171a24;--fg:#eceef6;--mu:#9aa0b6;--bd:#272b3a;--ac:#8b8bff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:linear-gradient(135deg,#5b5bf0,#7a5cff 55%,#12b8a6);color:#fff;padding:56px 20px 48px;text-align:center}
+header h1{margin:0;font-size:2rem}header p{margin:8px auto 0;max-width:560px;opacity:.92}
+main{max-width:960px;margin:0 auto;padding:28px 18px 40px}
+h2{margin:8px 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px;display:flex;flex-direction:column;box-shadow:0 6px 24px rgba(30,35,70,.06);transition:transform .2s}
+.card:hover{transform:translateY(-3px)}
+.ic{font-size:2rem}.card h3{margin:8px 0 6px}.card p{margin:0 0 14px;color:var(--mu);flex:1}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.tags span{font-size:.75rem;border:1px solid var(--bd);border-radius:20px;padding:2px 10px;color:var(--mu)}
+.card a{align-self:flex-start;background:var(--ac);color:#fff;text-decoration:none;border-radius:8px;padding:8px 14px;font-weight:600}
+footer{text-align:center;color:var(--mu);font-size:.85rem;padding:20px}
+footer a{color:var(--ac)}
 </style>
 </head>
 <body>
-
-<header class="top">
-  <div class="wrap">
-    <div class="logo"><span class="mark">&lt;/&gt;</span> Dasturlash tillari</div>
-    <button class="theme-btn" id="themeBtn" type="button" aria-label="Mavzuni almashtirish">
-      <span id="themeIcon">🌙</span><span class="lbl" id="themeLbl">Qorongʻi</span>
-    </button>
-  </div>
+<header>
+  <h1>👋 Begimov</h1>
+  <p>O‘quv saytlari, test simulyatorlari va interaktiv loyihalarim to‘plami.</p>
 </header>
-
-<main class="wrap">
-  <section class="hero">
-    <h1>Mashhur <span class="grad">dasturlash tillari</span> bilan tanishing</h1>
-    <p>Har bir til haqida qisqa maʼlumot: kim va qachon yaratgan, qayerda ishlatiladi, qanday afzalliklari bor va birinchi dastur — “Hello World” qanday yoziladi.</p>
-    <div class="stats">
-      <div class="stat"><b id="statCount">12</b><small>til</small></div>
-      <div class="stat"><b id="statOldest">1972</b><small>eng qadimgisi</small></div>
-      <div class="stat"><b id="statNewest">2014</b><small>eng yangisi</small></div>
+<main>
+  <h2>🚀 Loyihalar</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="ic">⚛️</div>
+      <h3>Mexanika fizikasi</h3>
+      <p>9 mavzu, 270 ta test, sodda tushuntirishlar va og‘ma otilgan jism simulyatsiyasi bor o‘quv sayti.</p>
+      <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+      <a href="loyihalar/mexanika-fizikasi.html">Ochish →</a>
     </div>
-  </section>
-
-  <section class="controls">
-    <label class="search">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input id="q" type="search" placeholder="Til nomi, muallif yoki soha boʻyicha qidiring…" autocomplete="off">
-    </label>
-    <div class="chips" id="chips"></div>
-    <div class="sortbar">
-      <span id="countInfo"></span>
-      <label>Saralash:
-        <select id="sort">
-          <option value="default">Odatiy</option>
-          <option value="name">Nomi (A–Z)</option>
-          <option value="old">Yili (eskidan yangiga)</option>
-          <option value="new">Yili (yangidan eskiga)</option>
-        </select>
-      </label>
+    <div class="card">
+      <div class="ic">💻</div>
+      <h3>Dasturlash 1 — Test o‘yini</h3>
+      <p>Dasturlash asoslari bo‘yicha test o‘yini va kod simulyatori.</p>
+      <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+      <a href="loyihalar/dasturlash-1-test.html">Ochish →</a>
     </div>
-  </section>
-
-  <section class="grid" id="grid"></section>
-  <div class="empty" id="empty">😕 Hech narsa topilmadi. Boshqa soʻz bilan qidirib koʻring.</div>
-
-  <section class="compare">
-    <h2>Qisqa taqqoslash</h2>
-    <p>Barcha tillar bitta jadvalda.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Til</th><th>Yili</th><th>Muallifi</th><th>Turi</th><th>Asosiy soha</th></tr></thead>
-        <tbody id="tbody"></tbody>
-      </table>
+    <div class="card">
+      <div class="ic">📘</div>
+      <h3>Dasturlash tillari</h3>
+      <p>Dasturlash tillari haqida ma’lumot beruvchi o‘quv sahifa.</p>
+      <div class="tags"><span>HTML</span><span>CSS</span></div>
+      <a href="loyihalar/dasturlash-tillari.html">Ochish →</a>
     </div>
-  </section>
+  </div>
 </main>
-
-<footer>
-  <div class="wrap">Dasturlash tillari haqida oʻquv sahifasi · Oʻzbek tilida · Kod oʻrganishni bugun boshlang! 🚀</div>
-</footer>
-
-<button class="totop" id="totop" type="button" aria-label="Yuqoriga">↑</button>
-
-<script>
-const LANGS = [
-  {
-    name: "Python", short: "Py", color: "#3776ab", year: 1991, author: "Guido van Rossum",
-    type: "Interpretatsiya qilinadigan",
-    desc: "Oʻqish va yozish juda oson boʻlgan, yangi boshlovchilar uchun eng mashhur til. Sintaksisi oddiy ingliz tiliga yaqin.",
-    areas: ["Sunʼiy intellekt", "Maʼlumotlar tahlili", "Veb", "Avtomatlashtirish"],
-    pros: ["Oʻrganish juda oson", "Juda koʻp tayyor kutubxonalar (NumPy, Django, PyTorch)", "Katta va faol hamjamiyat"],
-    code: 'print("Hello, World!")'
-  },
-  {
-    name: "JavaScript", short: "JS", color: "#f7df1e", fg: "#1b1d2a", year: 1995, author: "Brendan Eich (Netscape)",
-    type: "Interpretatsiya qilinadigan",
-    desc: "Veb-brauzerlarning asosiy tili. Saytlarni jonli va interaktiv qiladi, Node.js orqali serverda ham ishlaydi.",
-    areas: ["Veb", "Mobil", "Server"],
-    pros: ["Har bir brauzerda ishlaydi", "Frontend va backendni bitta tilda yozish mumkin", "React, Vue kabi kuchli freymvorklar"],
-    code: 'console.log("Hello, World!");'
-  },
-  {
-    name: "Java", short: "Jv", color: "#e76f00", year: 1995, author: "James Gosling (Sun Microsystems)",
-    type: "Kompilyatsiya qilinadigan (JVM)",
-    desc: "“Bir marta yoz — hamma joyda ishlat” tamoyiliga asoslangan, katta kompaniyalarda keng qoʻllanadigan til.",
-    areas: ["Korporativ", "Mobil", "Server"],
-    pros: ["Ishonchli va barqaror", "Turli platformalarda ishlaydi (JVM)", "Android ilovalari uchun asos"],
-    code: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}'
-  },
-  {
-    name: "C", short: "C", color: "#5c6bc0", year: 1972, author: "Dennis Ritchie (Bell Labs)",
-    type: "Kompilyatsiya qilinadigan",
-    desc: "Koʻplab zamonaviy tillarning “otasi”. Kompyuter xotirasi va qurilmalari bilan bevosita ishlash imkonini beradi.",
-    areas: ["Tizim dasturlash", "Qurilmalar (embedded)"],
-    pros: ["Juda tez ishlaydi", "Operatsion tizimlar (Linux, Windows yadrosi) shu tilda", "Kompyuter qanday ishlashini chuqur tushuntiradi"],
-    code: '#include <stdio.h>\n\nint main(void) {\n    printf("Hello, World!\\n");\n    return 0;\n}'
-  },
-  {
-    name: "C++", short: "C++", color: "#00599c", year: 1985, author: "Bjarne Stroustrup",
-    type: "Kompilyatsiya qilinadigan",
-    desc: "C tilining kengaytirilgan, obyektga yoʻnaltirilgan versiyasi. Tezlik muhim boʻlgan joylarda birinchi tanlov.",
-    areas: ["Oʻyinlar", "Tizim dasturlash", "Qurilmalar (embedded)"],
-    pros: ["Yuqori tezlik va unumdorlik", "Unreal Engine kabi oʻyin dvigatellari asosi", "Xotirani toʻliq nazorat qilish"],
-    code: '#include <iostream>\n\nint main() {\n    std::cout << "Hello, World!" << std::endl;\n    return 0;\n}'
-  },
-  {
-    name: "C#", short: "C#", color: "#68217a", year: 2000, author: "Anders Hejlsberg (Microsoft)",
-    type: "Kompilyatsiya qilinadigan (.NET)",
-    desc: "Microsoft tomonidan yaratilgan zamonaviy va qulay til. Windows ilovalari va Unity oʻyinlari uchun mashhur.",
-    areas: ["Oʻyinlar", "Korporativ", "Veb"],
-    pros: ["Unity orqali oʻyin yaratish", "Kuchli .NET ekotizimi", "Toza va tushunarli sintaksis"],
-    code: 'using System;\n\nclass Program {\n    static void Main() {\n        Console.WriteLine("Hello, World!");\n    }\n}'
-  },
-  {
-    name: "Go", short: "Go", color: "#00add8", year: 2009, author: "Robert Griesemer, Rob Pike, Ken Thompson (Google)",
-    type: "Kompilyatsiya qilinadigan",
-    desc: "Google yaratgan sodda va tez til. Bulut xizmatlari va koʻp foydalanuvchili serverlar uchun juda qulay.",
-    areas: ["Server", "Bulut texnologiyalari"],
-    pros: ["Oddiy va qisqa sintaksis", "Parallel ishlash (goroutine) oson", "Docker va Kubernetes shu tilda yozilgan"],
-    code: 'package main\n\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello, World!")\n}'
-  },
-  {
-    name: "Rust", short: "Rs", color: "#ce422b", year: 2010, author: "Graydon Hoare (Mozilla)",
-    type: "Kompilyatsiya qilinadigan",
-    desc: "Xavfsizlik va tezlikni birlashtirgan zamonaviy til. Xotira xatolarini dastur ishga tushmasdan oldin ushlaydi.",
-    areas: ["Tizim dasturlash", "Server", "Qurilmalar (embedded)"],
-    pros: ["Xotira xavfsizligi kafolatlangan", "C/C++ darajasidagi tezlik", "Dasturchilar eng sevgan til (soʻrovnomalarda)"],
-    code: 'fn main() {\n    println!("Hello, World!");\n}'
-  },
-  {
-    name: "Kotlin", short: "Kt", color: "#7f52ff", year: 2011, author: "JetBrains",
-    type: "Kompilyatsiya qilinadigan (JVM)",
-    desc: "Javaʼning zamonaviy va qisqa alternativasi. Google uni Android ilovalari uchun asosiy til deb eʼlon qilgan.",
-    areas: ["Mobil", "Server"],
-    pros: ["Android uchun rasmiy til", "Java bilan toʻliq mos", "Kamroq kod — kamroq xato"],
-    code: 'fun main() {\n    println("Hello, World!")\n}'
-  },
-  {
-    name: "Swift", short: "Sw", color: "#f05138", year: 2014, author: "Chris Lattner (Apple)",
-    type: "Kompilyatsiya qilinadigan",
-    desc: "Apple qurilmalari — iPhone, iPad, Mac va Apple Watch uchun ilovalar yaratish tili.",
-    areas: ["Mobil"],
-    pros: ["iOS va macOS uchun asosiy til", "Tez va xavfsiz", "Oʻqish oson, zamonaviy sintaksis"],
-    code: 'print("Hello, World!")'
-  },
-  {
-    name: "PHP", short: "PHP", color: "#777bb4", year: 1995, author: "Rasmus Lerdorf",
-    type: "Interpretatsiya qilinadigan",
-    desc: "Veb-saytlarning server qismi uchun yaratilgan til. Internetdagi saytlarning katta qismi PHPda ishlaydi.",
-    areas: ["Veb", "Server"],
-    pros: ["WordPress va Laravel shu tilda", "Deyarli har qanday hostingda ishlaydi", "Veb uchun tez boshlash mumkin"],
-    code: '<?php\n\necho "Hello, World!";'
-  },
-  {
-    name: "TypeScript", short: "TS", color: "#3178c6", year: 2012, author: "Anders Hejlsberg (Microsoft)",
-    type: "JavaScriptʼga kompilyatsiya qilinadigan",
-    desc: "JavaScriptʼga turlar (type) qoʻshilgan versiyasi. Katta loyihalarda xatolarni oldindan topishga yordam beradi.",
-    areas: ["Veb", "Server"],
-    pros: ["Xatolar kod yozish paytidayoq koʻrinadi", "Katta loyihalarni boshqarish oson", "Har qanday JavaScript kodi bilan mos"],
-    code: 'const message: string = "Hello, World!";\nconsole.log(message);'
-  }
-];
-
-const grid = document.getElementById("grid");
-const chipsEl = document.getElementById("chips");
-const q = document.getElementById("q");
-const sortSel = document.getElementById("sort");
-const empty = document.getElementById("empty");
-const countInfo = document.getElementById("countInfo");
-let activeArea = "Hammasi";
-
-function esc(s) {
-  return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-}
-
-// Soha filtrlari
-const allAreas = ["Hammasi", ...[...new Set(LANGS.flatMap(l => l.areas))].sort((a, b) => a.localeCompare(b))];
-chipsEl.innerHTML = allAreas.map(a =>
-  `<button type="button" class="chip${a === activeArea ? " active" : ""}" data-area="${esc(a)}">${esc(a)}</button>`
-).join("");
-chipsEl.addEventListener("click", e => {
-  const btn = e.target.closest(".chip");
-  if (!btn) return;
-  activeArea = btn.dataset.area;
-  chipsEl.querySelectorAll(".chip").forEach(c => c.classList.toggle("active", c === btn));
-  render();
-});
-
-function cardHTML(l, i) {
-  return `
-  <article class="card" style="--c:${l.color};--fg:${l.fg || "#fff"}">
-    <div class="card-head">
-      <div class="badge">${esc(l.short)}</div>
-      <div>
-        <h2>${esc(l.name)}</h2>
-        <div class="meta">📅 ${l.year}-yil · 👤 ${esc(l.author)}</div>
-      </div>
-    </div>
-    <p class="desc">${esc(l.desc)}</p>
-    <div class="tags">${l.areas.map(a => `<span class="tag">${esc(a)}</span>`).join("")}</div>
-    <h3>Afzalliklari</h3>
-    <ul class="pros">${l.pros.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
-    <div class="code-box">
-      <div class="code-top">
-        <span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span>
-        <span>Hello World · ${esc(l.name)}</span>
-        <button type="button" class="copy" data-i="${i}">Nusxa olish</button>
-      </div>
-      <pre><code>${esc(l.code)}</code></pre>
-    </div>
-  </article>`;
-}
-
-function render() {
-  const term = q.value.trim().toLowerCase();
-  let list = LANGS.map((l, i) => ({ l, i })).filter(({ l }) => {
-    const inArea = activeArea === "Hammasi" || l.areas.includes(activeArea);
-    const hay = [l.name, l.author, l.desc, l.year, l.type, ...l.areas, ...l.pros].join(" ").toLowerCase();
-    return inArea && (!term || hay.includes(term));
-  });
-  const s = sortSel.value;
-  if (s === "name") list.sort((a, b) => a.l.name.localeCompare(b.l.name));
-  if (s === "old") list.sort((a, b) => a.l.year - b.l.year);
-  if (s === "new") list.sort((a, b) => b.l.year - a.l.year);
-
-  grid.innerHTML = list.map(({ l, i }) => cardHTML(l, i)).join("");
-  empty.style.display = list.length ? "none" : "block";
-  countInfo.textContent = `${list.length} ta til koʻrsatilmoqda`;
-}
-
-grid.addEventListener("click", e => {
-  const btn = e.target.closest(".copy");
-  if (!btn) return;
-  const code = LANGS[btn.dataset.i].code;
-  const done = () => { btn.textContent = "Nusxalandi ✓"; setTimeout(() => btn.textContent = "Nusxa olish", 1500); };
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(code).then(done, () => fallbackCopy(code, done));
-  } else {
-    fallbackCopy(code, done);
-  }
-});
-function fallbackCopy(text, cb) {
-  const ta = document.createElement("textarea");
-  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
-  document.body.appendChild(ta); ta.select();
-  try { document.execCommand("copy"); } catch (e) {}
-  ta.remove(); cb();
-}
-
-q.addEventListener("input", render);
-sortSel.addEventListener("change", render);
-
-// Statistika va jadval
-const years = LANGS.map(l => l.year);
-document.getElementById("statCount").textContent = LANGS.length;
-document.getElementById("statOldest").textContent = Math.min(...years);
-document.getElementById("statNewest").textContent = Math.max(...years);
-document.getElementById("tbody").innerHTML = [...LANGS].sort((a, b) => a.year - b.year).map(l =>
-  `<tr><td><span class="dot" style="background:${l.color}"></span><b>${esc(l.name)}</b></td><td>${l.year}</td><td>${esc(l.author)}</td><td>${esc(l.type)}</td><td>${esc(l.areas[0])}</td></tr>`
-).join("");
-
-// Yorugʻ / qorongʻi mavzu
-const root = document.documentElement;
-const themeIcon = document.getElementById("themeIcon");
-const themeLbl = document.getElementById("themeLbl");
-function isDark() {
-  const t = root.getAttribute("data-theme");
-  if (t) return t === "dark";
-  return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-}
-function updateThemeBtn() {
-  const dark = isDark();
-  themeIcon.textContent = dark ? "☀️" : "🌙";
-  themeLbl.textContent = dark ? "Yorugʻ" : "Qorongʻi";
-}
-try {
-  const saved = localStorage.getItem("theme");
-  if (saved) root.setAttribute("data-theme", saved);
-} catch (e) {}
-document.getElementById("themeBtn").addEventListener("click", () => {
-  const next = isDark() ? "light" : "dark";
-  root.setAttribute("data-theme", next);
-  try { localStorage.setItem("theme", next); } catch (e) {}
-  updateThemeBtn();
-});
-updateThemeBtn();
-
-// Yuqoriga tugmasi
-const totop = document.getElementById("totop");
-window.addEventListener("scroll", () => totop.classList.toggle("show", window.scrollY > 600));
-totop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-
-render();
-</script>
+<footer>© 2026 Begimov · <a href="https://github.com/begimov2026">GitHub</a></footer>
 </body>
 </html>

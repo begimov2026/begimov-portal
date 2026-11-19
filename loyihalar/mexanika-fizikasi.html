@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="uz"><head><meta charset="utf-8"><title>Mexanika fizikasi — o’quv sayti</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#f6f7fb;--fg:#1c2033;--card:#fff;--ac:#3a35b5;--mu:#5d6380;--ok:#1f6fe5;--gr:#1b8a4b;--no:#c62f3b;--bd:#d9dcea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13152a;--fg:#e8eaf6;--card:#1d2040;--ac:#9aa0ff;--mu:#a3a8c8;--ok:#5aa2ff;--gr:#52d388;--no:#ff7b86;--bd:#33376a;color-scheme:dark}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:linear-gradient(135deg,var(--ac),#7a5cff 60%,#00b8d9);color:#fff;padding:18px 16px}header h1{margin:0;font-size:1.3rem}header p{margin:4px 0 0;opacity:.9;font-size:.9rem}
+nav{display:flex;gap:6px;overflow-x:auto;padding:10px 12px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--bd)}
+nav button{flex:none;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:20px;padding:6px 12px;cursor:pointer;font:inherit;font-size:.85rem}
+nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:820px;margin:0 auto;padding:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;margin:12px 0}
+h2{margin:0 0 6px;color:var(--ac)}h3{margin:14px 0 4px;font-size:1.02rem}
+.f{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--bg);border-left:3px solid var(--ac);padding:6px 10px;margin:6px 0;overflow-x:auto;white-space:pre-wrap}
+.tip{border-left:3px solid var(--gr);padding:4px 10px;color:var(--mu);margin:8px 0}
+.q{margin:14px 0}.o{display:block;width:100%;text-align:left;margin:5px 0;padding:8px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--fg);font:inherit;cursor:pointer}
+.o.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 20%,transparent)}.o.no{border-color:var(--no);background:color-mix(in srgb,var(--no) 20%,transparent)}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer}
+.tabs{display:flex;gap:8px}.tabs button{flex:1;padding:11px;border:0;border-radius:10px;background:var(--card);color:var(--fg);font:inherit;font-weight:600;cursor:pointer;border:1px solid var(--bd)}.tabs button.on{background:var(--ac);color:#fff}
+.easy{background:color-mix(in srgb,var(--ac) 12%,transparent);border-radius:10px;padding:10px 12px;margin:8px 0}.fun{background:color-mix(in srgb,#ffb300 18%,transparent);border-radius:10px;padding:10px 12px;margin:14px 0}
+.ex{margin:6px 0;padding:10px 12px;border-radius:8px;background:color-mix(in srgb,var(--no) 14%,transparent);border-left:4px solid var(--no)}.good{color:var(--ok);font-weight:600;margin:6px 0}
+.o:hover{border-color:var(--ac)}.card{box-shadow:0 2px 10px rgba(0,0,0,.06)}h2{font-size:1.25rem}.f{font-size:.92rem;line-height:1.7}
+header{position:relative;overflow:hidden}header>*{position:relative}.fl{position:absolute!important;inset:0;pointer-events:none}.fl span{position:absolute;font-size:2rem;opacity:.22;animation:fy 6s ease-in-out infinite}
+@keyframes fy{50%{transform:translateY(-14px) rotate(15deg)}}@keyframes fi{from{opacity:0;transform:translateY(10px)}}main>*{animation:fi .4s ease both}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.chips b{background:rgba(255,255,255,.2);border-radius:20px;padding:3px 12px;font-weight:600;font-size:.82rem}
+#tg{position:absolute;right:12px;top:12px;border:0;border-radius:50%;width:38px;height:38px;font-size:1.1rem;cursor:pointer;background:rgba(255,255,255,.25)}
+.pbw{height:8px;background:var(--bd);border-radius:6px;overflow:hidden;margin:6px 0 10px}#pb{height:100%;width:0;background:linear-gradient(90deg,var(--ac),#00b8d9);transition:width .4s}
+.cf{position:fixed;top:-30px;font-size:1.6rem;animation:cf 2.6s linear forwards;z-index:9;pointer-events:none}@keyframes cf{to{transform:translateY(105vh) rotate(540deg)}}
+.f{border-radius:0 8px 8px 0}.card h3{border-bottom:1px dashed var(--bd);padding-bottom:3px}input[type=range]{width:60%;accent-color:var(--ac)}
+:root[data-theme="dark"]{--bg:#13152a;--fg:#e8eaf6;--card:#1d2040;--ac:#9aa0ff;--mu:#a3a8c8;--ok:#5aa2ff;--gr:#52d388;--no:#ff7b86;--bd:#33376a;color-scheme:dark}
+footer{text-align:center;color:var(--mu);font-size:.85rem;padding:18px 12px 28px}
+</style></head><body>
+<header><div class="fl"><span style="left:6%;top:12%">⚛️</span><span style="left:30%;top:55%;animation-delay:1s">🚀</span><span style="left:62%;top:8%;animation-delay:2s">🔭</span><span style="left:85%;top:50%;animation-delay:3s">⚙️</span></div><button id="tg" onclick="const d=document.documentElement;d.dataset.theme=d.dataset.theme=='dark'?'light':'dark'" title="Mavzu">🌓</button><h1>🚀 Mexanika fizikasi: to’liq o’quv qo’llanma</h1><p>Cyber University ma’ruzalari asosida</p><div class="chips"><b>📚 9 mavzu</b><b>📝 270 test</b><b>🧠 oddiy tushuntirish</b><b>🎯 simulyatsiya</b></div></header>
+<nav id="nav"></nav><main id="m"></main>
+<footer>Ma’ruza mualliflari: <b>Yunus Turaev</b> va <b>Ilhom Turapov</b> (Cyber University).<br>Sayt yaratuvchisi: <b id="me">________</b></footer>
+<script>
+const F=s=>'<div class="f">'+s+'</div>',L=(t,x)=>'<h3>'+t+'</h3>'+x;
+const T=[
+{n:"1. Vektorlar va birliklar",th:
+L("Asosiy tushunchalar","<p><b>Fizika</b> — «tabiat» (Aristotel asari). <b>Materiya</b>: modda va maydon. <b>Fizik hodisa</b> — modda tarkibi o’zgarmaydigan jarayon (tarkib o’zgarsa — kimyoviy). <b>Vektor</b> kattalik: son va yo’nalish; <b>skalyar</b>: faqat son. <b>Moddiy nuqta</b>: o’lchami hisobga olinmaydigan jism. <b>Sanoq sistemasi</b> = sanoq jismi + koordinatalar + soat. <b>Trayektoriya</b> uzunligi — yo’l; boshlang’ich va oxirgi nuqtani tutashtiruvchi vektor — ko’chish.</p>")+
+L("XBS asosiy birliklari","<p>metr (m), sekund (s), kilogram (kg), kelvin (K), mol, amper (A), kandella (cd). Qolganlari hosilaviy (N, J, W...). Ta’riflar 2018-yil 16-noyabrda qabul qilingan, 2019-yil 20-mayda kuchga kirgan.</p>")+
+L("XBSdan tashqari birliklar",F("1 dengiz mili=1852 m; 1 yorug’lik yili=9,4·10¹⁵ m; 1 a.b.=1,5·10¹¹ m\n1 pc=3,26 y.y.=3,11·10¹⁶ m; 1 dyum=0,0254 m; 1 fut=0,3048 m\n1 yard=0,9144 m; 1 mil=1609,344 m; 1 litr=10⁻³ m³; 1 ga=10⁴ m²\n1 funt=0,4536 kg; 1 unsiya=28,35 g; 1 karat=0,2 g"))+
+L("Vektorlar ustida amallar",F("|a|=√(ax²+ay²+az²)\na±b=(ax±bx, ay±by, az±bz);  k·a=(kax,kay,kaz)\na·b=|a||b|cosθ=axbx+ayby+azbz   (skalyar)\na×b=det[i j k; ax ay az; bx by bz]=(aybz−azby)i−(axbz−azbx)j+(axby−aybx)k\n|a×b|=|a||b|sinθ")+"<div class='tip'>Vazifa: a=(5,−4,3), b=(2,3,−5): a+b=(7,−1,−2); a·b=10−12−15=−17.</div>")},
+{n:"2. Kinematika",th:
+L("Tezlik va tezlanish",F("v(t)=ds/dt;   a(t)=dv/dt=d²s/dt²\nTekis o’zgaruvchan: v=v0±at;  s=v0t±at²/2\nO’rtacha tezlik: v=S_umum/t_umum\nNisbiy: v=√(v1²+v2²−2v1v2cosφ); natijaviy: √(v1²+v2²+2v1v2cosφ)\nYo’l: s=∫v dt"))+
+L("Aylanma harakat",F("T=t/N [s];  ν=N/t [Hz]\nω=dφ/dt [rad/s];  ε=dω/dt=d²φ/dt² [rad/s²]\na_n=v²/R=ω²R;  a_t=dv/dt=εR;  a=√(a_n²+a_t²)"))+
+L("Harakat tenglamalari",F("To’g’ri chiziqli tekis: d²x/dt²=0\nO’zgarmas tezlanish: d²x/dt²=ax\nVertikal: d²y/dt²=−g;  og’ma otish: d²x/dt²=0, d²y/dt²=−g\nAylanma: d²φ/dt²=ε   (ε=0 → ω=const)\nAylana trayektoriyasi: x²/R²+y²/R²=1")+"<div class='tip'>1-masala: S=3t−2t²+t³+150 → v=3−4t+3t², v(3)=18 m/s; a=−4+6t, a(3)=14 m/s².</div>")},
+{n:"3. Dinamika",th:
+L("Nyuton qonunlari",F("1: ΣF=0 → v=const\n2: a=F/m  (F — teng ta’sir etuvchi)\n3: F12=−F21\nTeng ta’sir etuvchi: F=F1+F2+…; |F|=√(F1²+F2²+2F1F2cosα)")+"<p><b>Inertlik</b> — tezlik o’zgarishiga qarshilik; o’lchovi — massa.</p>")+
+L("Gravitatsiya, og’irlik, ishqalanish",F("F=G·m1m2/r²,  G=6,67·10⁻¹¹ N·m²/kg² (Kavendish o’lchagan)\nP=mg (tinch); yuqoriga a bilan: P=m(g+a); pastga: P=m(g−a)\nMaksimal tinchlik ishqalanishi: F=μmg\nQiya tekislikda tinch: F=mg·sinα; harakatda: F=μmg·cosα\nMarkazdan qochma: F=mω²r"))},
+{n:"4. Ish va energiya",th:
+L("Energiya",F("Ek=mv²/2;  Ep=mgh;  Ep(gravit.)=−G·m1m2/r\nE1+E2+…=const (yopiq sistema)"))+
+L("Ish va quvvat",F("A=∫F ds;  A=F·s·cosα\nOg’irlik ishi: A=Ep(2)−Ep(1) (kitobdagi ifoda)\nA=Ek(2)−Ek(1)\nN=dA/dt [W];  η=Af/Au·100%  (η≤100%)")+"<div class='tip'>Gravitatsiyada 1/r: kuch ~1/r² bo’lgani uchun energiya (kuchning r bo’yicha integrali) 1/r ko’rinishida chiqadi.</div>")+
+L("Quvvat misollari","<p>Chivin ~10⁻⁶ W; odam 70–100 W; ot ~11 kW; ko’k kit ~380 kW; avtomobil ~100 kW; F1 ~750 kW; poyezd ~10 MW; Saturn V ~120000 MW.</p>")+
+L("Ochiq muammolar","<p>Qorong’u energiya, vakuum energiyasi (nazariya ~10¹²⁰ marta katta), kvant «ish» tushunchasi, nanoshkala fluktuatsiyalari.</p>")},
+{n:"5. Impuls va to’qnashuv",th:
+L("Impuls",F("p=mv [kg·m/s];  kuch impulsi I=F·t [N·s];  I=Δp\np1+p2+…=const (yopiq sistema)"))+
+L("To’qnashuvlar",F("Noelastik: m1v1+m2v2=(m1+m2)u;  E1+E2=Eu+Q\nElastik: m1v1+m2v2=m1u1+m2u2;  m1v1²/2+m2v2²/2=m1u1²/2+m2u2²/2"))+
+L("O’zgaruvchan massa",F("Meshcherskiy: M·dv/dt=F+μu,  μ=dm/dt\nSiolkovskiy: v=u·ln(M0/(M0−μt))\nVertikal (og’irlik bilan): v(t)=u·ln(M0/(M0−μt))−gt\nh(t)=u[t+((M0−μt)/μ)·ln((M0−μt)/M0)]−gt²/2")+"<div class='tip'>Misol: M0=6000 kg, u=3500 m/s, μ=40 kg/s, t=10 s → v≈143 m/s, h≈703 m (g hisobga olinsa).</div>")},
+{n:"6. Tizimlar va massa markazi",th:
+L("Tizim dinamikasi",F("P=Σmivi;  dP/dt=F_tashqi (ichki kuchlar yo’qoladi)\nMM: rc=Σmiri/M;  uzluksiz: rc=(1/M)∫r dm\nM·ac=F_tashqi;  P=M·vc;  F_tash=0 → P=const"))+
+L("MM o’rni",F("Sterjen: L/2; uchburchak: asosdan h/3; yarim disk: 4R/(3π)\nYarim shar: 3R/8; konus: asosdan h/4\nIkki zarra: l1/l2=m2/m1"))+
+L("Kyonig teoremasi, keltirilgan massa",F("K=Mvc²/2+K'\nμ=m1m2/(m1+m2);  μ·r̈=F12\nQayiq: Δxq=−m·l/(M+m)")+"<div class='tip'>Yer–Oy MM Yer ichida: d/82,3≈4670 km &lt; 6371 km.</div>")},
+{n:"7. Inersiya momenti",th:
+L("Kinematika va kuch momenti",F("v=ωr; aτ=εr; an=ω²r; v=ω×r\nM=r×F; M=F·d=Fr·sinα [N·m]\nMuvozanat: ΣF=0 va ΣM=0"))+
+L("Inersiya momenti",F("I=mr²;  I=Σmiri²=∫r²dm;  I=mk²\nHalqa mR²; disk ½mR²; yupqa sfera ⅔mR²; yaxlit shar ⅖mR²\nSterjen o’rtasida mL²/12; uchida mL²/3; kovak silindr ½m(R1²+R2²)\nShteyner: I=IC+ma²"))+
+L("Dinamika va dumalash",F("Iε=M;  K=Iω²/2;  A=∫Mdφ;  P=Mω;  L=Iω; dL/dt=M\nM=0 → I1ω1=I2ω2\nTekis-parallel: maC=F; ICε=MC; K=mvC²/2+ICω²/2\nDumalash: a=g·sinα/(1+I/mR²); halqa ½g sinα, disk ⅔g sinα, shar 5/7 g sinα\nBlok: a=(m2−m1)g/(m1+m2+I/R²)")+"<div class='tip'>Disk m=2, R=0,2: I=0,04; ω=30 → K=18 J.</div>")},
+{n:"8. Aylanish dinamikasi",th:
+L("Kuch momenti va juft",F("M=r×F; Mz=Fτ·r (ishora: soatga qarshi +)\nVarinyon: natijaviy moment=momentlar yig’indisi\nJuft: M=F·d (nuqtaga bog’liq emas, natijaviy kuch 0)"))+
+L("Asosiy qonunlar",F("Iε=M;  dL/dt=M;  M=0 → L=const\nA=ΔK=Iω2²/2−Iω1²/2;  P=Mω"))+
+L("Misollar",F("Sterjen tushishi: ε=3g/(2L), ω=√(3g/L)\nYuk+disk: a=2mg/(2m+M), T=mMg/(2m+M)\nMuvozanat: T=mg/(2sinα)\nGiroskop: Ω=M/L=mgl/(Iω)")+"<p><b>Yechish tartibi:</b> chizma → o’q va yo’nalish → momentlar Mi=±Fidi → Iε=ΣM va ma=ΣF → bog’lanish (a=εR) → birlik va chegaraviy tekshiruv.</p>")},
+{n:"9. Deformatsiya",th:
+L("Kuchlanish va Guk",F("σ=Fn/S; τ=Fτ/S [Pa];  ε=Δl/l;  γ≈Δx/h\nε⊥=−μ·ε (0≤μ≤0,5);  ΔV/V=ε(1−2μ)\nσ=Eε; τ=Gγ; Δp=−K·ΔV/V\nG=E/(2(1+μ)); K=E/(3(1−2μ))\nF=kΔl, k=ES/l"))+
+L("Diagramma va prujinalar",F("σpr (proporsionallik) < σel (elastiklik) < σoq (oquvchanlik) < σm (mustahkamlik)\nKetma-ket: 1/k=1/k1+1/k2;  parallel: k=k1+k2\nBuralish: M=Dφ, D=πGr⁴/(2l)"))+
+L("Energiya",F("U=kΔl²/2=F²/(2k);  w=σ²/(2E)=Eε²/2;  siljishda w=Gγ²/2\nDinamik yuk: xmax=2x0 (x0=mg/k); h balandlikdan: x=x0(1+√(1+2h/x0))\nTermik: σ=Eα·ΔT\nO’z og’irligi: lmax=σm/(ρg); Δl=ρgl²/(2E)")+"<div class='tip'>E: po’lat≈200, mis≈120, alyuminiy≈70 GPa, rezina 1–10 MPa.</div>")}
+];
+const Q=[
+[["Qaysi biri vektor kattalik?","Ko’chish","Yo’l","Massa","Vaqt"],["a=(3,4,0) vektor moduli?","5","7","25","1"],["a=(1,2,3), b=(4,5,6) skalyar ko’paytma?","32","28","21","15"],["1 dyum necha metr?","0,0254","0,3048","0,9144","2,54"],["Qaysi biri XBS asosiy birligi emas?","Nyuton","Metr","Kilogram","Amper"]],
+[["v=3−4t+3t² bo’lsa, v(3)?","18 m/s","12 m/s","24 m/s","3 m/s"],["v0=2, a=3, t=4 s: v=?","14 m/s","12 m/s","20 m/s","24 m/s"],["N=2 aylanish 4 s da: ν=?","0,5 Hz","2 Hz","8 Hz","4 Hz"],["ω=2 rad/s, R=3 m: a_n=?","12 m/s²","6 m/s²","18 m/s²","9 m/s²"],["Tezlanish ko’chishdan qanday olinadi?","2-tartibli hosila","1-tartibli hosila","Integral","Ko’paytma"]],
+[["F1=30 N, F2=40 N, 90° burchak: F=?","50 N","70 N","10 N","35 N"],["F=20 N, m=4 kg: a=?","5 m/s²","80 m/s²","0,2 m/s²","16 m/s²"],["Lift yuqoriga a=2, m=10, g=10: P=?","120 N","80 N","100 N","20 N"],["μ=0,3, m=10 kg, g=10: maks. ishqalanish?","30 N","3 N","100 N","0,3 N"],["Nyuton 3-qonuni:","F12=−F21","F=ma","ΣF=0→v=const","F=Gm1m2/r²"]],
+[["m=2 kg, v=3 m/s: Ek=?","9 J","6 J","18 J","3 J"],["m=5 kg, h=2 m, g=10: Ep=?","100 J","10 J","50 J","25 J"],["F=10 N, s=5 m, α=90°: A=?","0 J","50 J","10 J","5 J"],["600 J ish 20 s da: N=?","30 W","12000 W","580 W","3 W"],["Af=80, Au=100: η=?","80%","125%","20%","8%"]],
+[["m=3 kg, v=4 m/s: p=?","12 kg·m/s","7 kg·m/s","1,3 kg·m/s","48 kg·m/s"],["2 kg·3 m/s zarra tinch 1 kg ga yopishdi: u=?","2 m/s","3 m/s","1,5 m/s","6 m/s"],["F=10 N, t=3 s: kuch impulsi?","30 N·s","3,3 N·s","13 N·s","7 N·s"],["Elastik to’qnashuvda saqlanadi:","impuls va energiya","faqat impuls","faqat energiya","hech biri"],["Gravitatsiyasiz massa M0 dan M0/2 gacha: v=?","u·ln2","u","2u","u/2"]],
+[["m=1 kg x=0 da, m=3 kg x=4 da: xc=?","3 m","2 m","1 m","4 m"],["Ichki kuchlar MM harakatiga ta’sir qiladimi?","Yo’q","Ha","Faqat portlashda","Faqat aylanishda"],["m1=m2=2 kg: keltirilgan massa?","1 kg","4 kg","2 kg","0,5 kg"],["Odam 60 kg, qayiq 140 kg, l=5 m: qayiq siljishi?","1,5 m","3,5 m","5 m","2,1 m"],["Kyonig teoremasi:","K=Mvc²/2+K'","K=Mvc²","K=K'","K=Mvc/2"]],
+[["Disk m=2, R=0,2: I=?","0,04 kg·m²","0,08 kg·m²","0,4 kg·m²","0,02 kg·m²"],["Sterjen uchi orqali I=?","mL²/3","mL²/12","mL²/2","mL²"],["Shteyner teoremasi:","I=IC+ma²","I=IC−ma²","I=ma²","I=IC·a²"],["M=0,4 N·m, I=0,04: ε=?","10 rad/s²","0,1 rad/s²","16 rad/s²","0,4 rad/s²"],["Qiyadan dumalayotgan disk tezlanishi:","⅔g·sinα","g·sinα","½g·sinα","5/7 g·sinα"]],
+[["Kalit 0,25 m, F=80 N, 60° da: M=?","17,3 N·m","20 N·m","10 N·m","32 N·m"],["Juft: F=20 N, yelka 0,4 m: M=?","8 N·m","16 N·m","0 N·m","50 N·m"],["M=50 N·m, ω=200 rad/s: P=?","10 kW","0,25 kW","250 W","1 kW"],["I ikki marta kamaysa (M=0), ω:","2 marta ortadi","2 marta kamayadi","o’zgarmaydi","4 marta ortadi"],["Gorizontal sterjen tushishida ε=?","3g/(2L)","g/L","3g/L","2g/(3L)"]],
+[["F=100 N, S=2 mm²: σ=?","50 MPa","5 MPa","200 MPa","0,5 MPa"],["Ikki bir xil prujina (k) ketma-ket:","k/2","2k","k","k²"],["400 va 600 N/m parallel:","1000 N/m","240 N/m","200 N/m","500 N/m"],["μ=0,5 bo’lsa ΔV/V=?","0","ε","2ε","0,5ε"],["Yuk birdan qo’yilsa xmax=?","2x0","x0","x0/2","4x0"]]
+];
+const nav=document.getElementById('nav'),m=document.getElementById('m');
+const E=[["Vektorda yo’nalish bor: ko’chish boshlang’ich nuqtadan oxirgisiga qaratilgan. Yo’l, massa, vaqt — faqat son (skalyar).","|a|=√(3²+4²+0²)=√25=5.","1·4+2·5+3·6=4+10+18=32.","1 dyum=2,54 sm=0,0254 m. 0,3048 — fut, 0,9144 — yard.","Nyuton hosilaviy birlik (kg·m/s²). Asosiy 7 ta: m, s, kg, K, mol, A, cd."],
+["v=ds/dt shuning uchun v(3)=3−12+27=18 m/s (3−4·3+3·9).","v=v0+at=2+3·4=14.","ν=N/t=2/4=0,5 Hz: sekundiga yarim aylanish.","a_n=ω²R=2²·3=12.","a=dv/dt=d²s/dt²: ko’chishdan ikki marta hosila olinadi."],
+["Kuchlar perpendikulyar (cos90°=0): √(30²+40²)=50.","a=F/m=20/4=5.","Lift tezlanib ko’tarilsa P=m(g+a)=10·12=120.","F=μmg=0,3·10·10=30.","Ta’sir va aks ta’sir kuchlari modul teng, yo’nalishi qarama-qarshi."],
+["mv²/2=2·9/2=9.","mgh=5·10·2=100.","A=Fs·cosα; cos90°=0: kuch ko’chishga tik bo’lsa ish bajarmaydi.","N=A/t=600/20=30.","η=Af/Au=80/100=80%. U 100% dan oshmaydi."],
+["p=mv=3·4=12.","Impuls: 2·3=(2+1)u → u=2.","I=F·t=10·3=30.","Elastik to’qnashuvda impuls ham, energiya ham saqlanadi; noelastikda energiya qisman issiqlikka aylanadi.","v=u·ln(M0/M); M=M0/2 → v=u·ln2."],
+["xc=(1·0+3·4)/4=3: MM og’irroq jismga yaqin bo’ladi.","Ichki kuchlar juft-juft bir-birini yo’qotadi (Nyuton 3), MM faqat tashqi kuchga bo’ysunadi.","μ=m1m2/(m1+m2)=4/4=1.","Δx=m·l/(M+m)=60·5/200=1,5 m.","K = MM ko’chishi energiyasi + MM ga nisbatan harakat energiyasi."],
+["I=½mR²=½·2·0,04=0,04.","MM orqali mL²/12; Shteyner: +m(L/2)²=mL²/3.","Parallel o’qqa o’tilganda ma² qo’shiladi.","ε=M/I=0,4/0,04=10.","a=g·sinα/(1+½)=⅔·g·sinα."],
+["Faqat urinma tashkil etuvchi aylantiradi: M=F·r·sin60°=80·0,25·0,866≈17,3.","Juft momenti M=F·d=20·0,4=8.","P=Mω=50·200=10000 W=10 kW.","L=Iω=const: I yarmiga kamaysa ω ikki baravar ortadi.","ε=M/I=(mg·L/2)/(mL²/3)=3g/(2L)."],
+["σ=F/S=100/(2·10⁻⁶)=5·10⁷ Pa=50 MPa (mm²→10⁻⁶ m²).","Ketma-ket: 1/k'=1/k+1/k=2/k → k'=k/2.","Parallel ulashda bikrliklar qo’shiladi: 400+600.","ΔV/V=ε(1−2μ)=ε·0=0: hajm o’zgarmaydi.","mgx=kx²/2 → x=2mg/k=2x0 (dinamik yuklanish)."]];
+const X=[["Vektor — strelka: uzunligi kattalikni, ucidagi yo’nalishni bildiradi. Skalyar ko’paytma «ikki vektor qanchalik bir tomonga qaraydi»ni o’lchaydi (tik bo’lsa 0). Vektor ko’paytma ikkalasiga tik yangi vektor beradi.","1 dengiz mili ≈ Yer meridianining 1 burchak daqiqasiga mos uzunlik."],
+["Tezlik — holat qanchalik tez o’zgarishi, tezlanish — tezlik qanchalik tez o’zgarishi. Aylanishda tezlik moduli o’zgarmasa ham yo’nalishi o’zgaradi, shuning uchun markazga intilma tezlanish bor.","Aylana bo’ylab tekis harakatda ham tezlanish nolga teng emas!"],
+["Kuch tezlikni emas, tezlikning o’zgarishini beradi. Lift tezlanib ko’tarilganda o’zingizni og’irroq sezasiz: P=m(g+a).","Kosmonavt vaznsizlikda og’irligini sezmaydi, lekin massasi o’sha-o’sha."],
+["Ish — kuch ko’chish yo’nalishida qancha «ishlagani». Devorni itarib charchasangiz ham ish 0 (ko’chish yo’q). Energiya — ish bajarish imkoniyati.","Ko’k kit ~380 kW quvvat sarflaydi, odam uzoq muddat atigi 70–100 W."],
+["Impuls — «harakat miqdori»: og’ir va tez jismni to’xtatish qiyin. To’qnashuvda sistemaning umumiy impulsi o’zgarmaydi. Raketa gazni orqaga otib, o’zi oldinga ketadi.","Raketa havosiz fazoda ham uchadi: unga tayanch kerak emas."],
+["MM — butun tizim go’yo shu nuqtada to’plangandek harakatlanadigan nuqta. Ichkaridagi portlash yoki sakrash MM yo’lini o’zgartirmaydi.","Yer–Oy tizimining MM Yer ichida joylashgan."],
+["I — aylanishdagi «massa». Massa o’qdan qancha uzoq bo’lsa aylantirish shuncha qiyin: tayoqni uchidan burash o’rtasidan burashdan og’irroq.","Halqa disk va shardan sekin dumalaydi — massa va radiusdan qat’i nazar."],
+["Kuch momenti = kuch × yelka. Eshikni ilgak yonidan emas, chetidan itarish oson. Konkida uchuvchi qo’lini yig’sa I kamayadi, ω ortadi.","Yer o’qining pretsessiyasi ≈ 26 000 yilda bir aylanadi."],
+["Har qanday jism kuch ostida cho’ziladi/siqiladi. σ — yuza birligiga kuch, ε — nisbiy cho’zilish; ular proporsional (Guk): σ=Eε. E katta bo’lsa material qattiq.","Relslar orasida tirqish qoldiriladi: qizigan po’lat katta kuchlanish hosil qiladi."]];
+function show(i,tab=0){[...nav.children].forEach((b,j)=>b.classList.toggle('on',i==j));
+ const tb='<div class="tabs"><button class="'+(tab?'':'on')+'" onclick="show('+i+',0)">📖 Nazariya</button><button class="'+(tab?'on':'')+'" onclick="show('+i+',1)">📝 Test</button></div>';
+ m.innerHTML=tb+(tab?'<div class="card"><h2>📝 '+T[i].n+': test</h2><div class="pbw"><div id="pb"></div></div><div id="qs"></div><p id="sc"></p></div>':'<div class="card"><h2>'+T[i].n+'</h2><div class="easy"><b>🧠 Oddiy tilda:</b> '+X[i][0]+'</div>'+T[i].th+'<div class="fun">✨ Qiziq: '+X[i][1]+'</div><button class="btn" onclick="show('+i+',1)">Testga o’tish →</button></div>'+(i==1?SIM:''));
+ document.documentElement.style.setProperty('--ac','hsl('+(235+i*40)%360+',65%,52%)'.replace('('+(235+i*40)%360,'('+(235+i*40)%360));if(tab)quiz(i);else if(i==1)sim();try{location.hash='t'+(i+1)}catch(e){}scrollTo(0,0)}
+function quiz(i){let sc=0,ans=0,n=Q[i].length,qs=document.getElementById('qs'),pb=document.getElementById('pb');Q[i].forEach((q,k)=>{const d=document.createElement('div');d.className='q';
+ d.innerHTML='<b>'+(k+1)+'. '+q[0]+'</b>';const op=q.slice(1).map((t,j)=>({t,c:j==0})).sort(()=>Math.random()-.5),bs=[];
+ op.forEach(o=>{const b=document.createElement('button');b.className='o';b.textContent=o.t;bs.push(b);b.onclick=()=>{if(d.dataset.d)return;d.dataset.d=1;ans++;
+  bs.forEach((x,j)=>{if(op[j].c)x.classList.add('ok')});const p=document.createElement('div');
+  if(o.c){sc++;p.className='good';p.textContent='✅ To’g’ri!'}else{b.classList.add('no');p.className='ex';p.innerHTML='❌ Xato. <b>To’g’ri javob: '+q[1]+'.</b><br>'+E[i][k]}
+  d.appendChild(p);pb.style.width=ans/n*100+'%';if(ans==n)fin(i,sc,n);document.getElementById('sc').textContent='Natija: '+sc+' / '+ans+' (jami '+n+')'+(ans==n?(sc==n?' 🏆 A’lo!':sc>=n/2?' 👍 Yaxshi, xatolarni qayta ko’ring':' 📖 Nazariyani qayta o’qing'):'')};d.appendChild(b)});qs.appendChild(d)});
+ const r=document.createElement('button');r.className='btn';r.textContent='🔄 Qayta boshlash';r.onclick=()=>show(i,1);qs.appendChild(r)}
+const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),P=a=>a[R(0,a.length-1)],f=x=>String(+(+x).toFixed(3)).replace('.',',');
+const G=[
+[()=>{const t=P([[3,4,0,5],[2,3,6,7],[1,2,2,3],[2,6,9,11],[4,4,7,9],[6,8,0,10]]);return[`a=(${t[0]}, ${t[1]}, ${t[2]}) vektor moduli?`,t[3],[t[0]+t[1]+t[2],t[0]**2+t[1]**2+t[2]**2,t[3]+1],'',`|a|=√(${t[0]}²+${t[1]}²+${t[2]}²)=${t[3]}.`]},
+()=>{const a=[R(1,5),R(1,5),R(1,5)],b=[R(1,5),R(1,5),R(1,5)],d=a[0]*b[0]+a[1]*b[1]+a[2]*b[2];return[`a=(${a}), b=(${b}) vektorlarning skalyar ko’paytmasi?`,d,[a[0]+b[0]+a[1]+b[1]+a[2]+b[2],a[0]*b[0],d+a[1]],'',`a·b=axbx+ayby+azbz=${a[0]}·${b[0]}+${a[1]}·${b[1]}+${a[2]}·${b[2]}=${d}.`]},
+()=>{const x=R(1,5),y=R(1,5),p=R(1,5),q=R(1,5),c=x*q-y*p;return[`a=(${x}, ${y}, 0), b=(${p}, ${q}, 0). a×b vektorning k (z) komponentasi?`,c,[x*p+y*q,y*p-x*q,x*q+y*p],'',`(a×b)z=axby−aybx=${x}·${q}−${y}·${p}=${c}.`]},
+()=>{const x=R(2,9);return[`${x} fut necha metr? (1 fut=0,3048 m)`,x*.3048,[x*.9144,x*.0254,x*3.048],' m',`${x}·0,3048=${f(x*.3048)} m. Yard (0,9144) va dyum (0,0254) bilan adashtirmang.`]},
+()=>{const p=R(2,6),q=R(2,6),th=P([0,60,90,180]),c=p*q*{0:1,60:.5,90:0,180:-1}[th];return[`|a|=${p}, |b|=${q}, ular orasidagi burchak ${th}°. a·b=?`,c,[p*q,p*q*.5+1,-p*q*2],'',`a·b=|a||b|cosθ=${p}·${q}·cos${th}°=${f(c)}.`]}],
+[()=>{const v=R(1,9),a=R(1,5),t=R(2,8);return[`Boshlang’ich tezlik ${v} m/s, tezlanish ${a} m/s². ${t} s dan keyin tezlik?`,v+a*t,[v-a*t,a*t,v+a*t*t],' m/s',`v=v0+at=${v}+${a}·${t}=${v+a*t}.`]},
+()=>{const v=R(1,9),a=R(1,5),t=R(2,8);return[`v0=${v} m/s, a=${a} m/s², t=${t} s. Bosib o’tilgan yo’l?`,v*t+a*t*t/2,[v*t+a*t*t,v+a*t*t/2,v*t+a*t/2],' m',`s=v0t+at²/2=${v*t}+${f(a*t*t/2)}=${f(v*t+a*t*t/2)}.`]},
+()=>{const t=R(2,10),N=R(1,9)*2;return[`Jism ${t} s da ${N} marta aylandi. Chastota?`,N/t,[t/N,N*t,N/t/t],' Hz',`ν=N/t=${N}/${t}=${f(N/t)} Hz. (T=t/N davr bilan adashtirmang.)`]},
+()=>{const w=R(2,6),r=R(1,5);return[`ω=${w} rad/s, R=${r} m. Markazga intilma tezlanish?`,w*w*r,[w*r,w*w/r,2*w*r],' m/s²',`a_n=ω²R=${w}²·${r}=${w*w*r}.`]},
+()=>{const A=R(1,4),B=R(1,6),t=R(2,5);return[`S(t)=${A}t²+${B}t (m). t=${t} s da tezlik?`,2*A*t+B,[A*t+B,2*A*t,A*t*t+B*t],' m/s',`v=dS/dt=2·${A}·t+${B}; t=${t} da ${2*A*t+B}.`]},
+()=>{const p=P([[30,60,40],[20,30,24],[40,60,48],[10,40,16],[60,90,72]]);return[`Yo’lning yarmi ${p[0]} km/soat, qolgan yarmi ${p[1]} km/soat bilan o’tildi. O’rtacha tezlik?`,p[2],[(p[0]+p[1])/2,p[0]*p[1]/(p[0]+p[1]),p[0]+p[1]],' km/soat',`O’rtacha tezlik=umumiy yo’l/umumiy vaqt=2v1v2/(v1+v2)=${p[2]}. Oddiy o’rtacha (${(p[0]+p[1])/2}) noto’g’ri.`]}],
+[()=>{const k=R(1,9);return[`Perpendikulyar ${3*k} N va ${4*k} N kuchlar. Teng ta’sir etuvchi?`,5*k,[7*k,k,3.5*k],' N',`F=√(${3*k}²+${4*k}²)=${5*k} N (cos90°=0).`]},
+()=>{const m=R(2,9),a=R(2,9);return[`m=${m} kg jismga F=${m*a} N kuch ta’sir qiladi. a=?`,a,[m*m*a,m,a*2],' m/s²',`a=F/m=${m*a}/${m}=${a}.`]},
+()=>{const m=R(2,9),a=R(1,4);return[`${m} kg yuk lift ichida yuqoriga ${a} m/s² bilan tezlanmoqda (g=10). Yuk og’irligi?`,m*(10+a),[m*(10-a),m*10,m*a],' N',`P=m(g+a)=${m}·${10+a}=${m*(10+a)}.`]},
+()=>{const m=R(2,9),a=R(1,4);return[`${m} kg yuk lift ichida pastga ${a} m/s² bilan tezlanmoqda (g=10). Yuk og’irligi?`,m*(10-a),[m*(10+a),m*10,m*a],' N',`P=m(g−a)=${m}·${10-a}=${m*(10-a)}.`]},
+()=>{const m=R(2,9),mu=P([.1,.2,.3,.4,.5]);return[`μ=${f(mu)}, m=${m} kg (g=10). Maksimal ishqalanish kuchi?`,mu*m*10,[m*10,mu*m,mu*m*5],' N',`F=μmg=${f(mu)}·${m}·10=${f(mu*m*10)}.`]},
+()=>{const F=R(2,9)*8,k=P([2,3]);return[`Ikki jism orasidagi tortishish ${F} N. Masofa ${k} marta oshsa, kuch?`,F/(k*k),[F/k,F*k*k,F/(2*k)],' N',`F~1/r²: ${F}/${k}²=${f(F/(k*k))}.`]},
+()=>{const m=R(2,9)*2;return[`${m} kg jism 30° qiya tekislikda tinch turibdi (g=10). Ishqalanish kuchi?`,m*5,[m*8.66,m*10,m*2.5],' N',`F=mg·sin30°=${m}·10·0,5=${m*5}.`]}],
+[()=>{const m=R(1,9),v=R(2,10);return[`m=${m} kg, v=${v} m/s. Kinetik energiya?`,m*v*v/2,[m*v,m*v*v,m*v*v/4],' J',`Ek=mv²/2=${m}·${v*v}/2=${f(m*v*v/2)}.`]},
+()=>{const m=R(1,9),h=R(2,9);return[`${m} kg jism ${h} m balandlikda (g=10). Potensial energiya?`,m*10*h,[m*h,m*5*h,m*10/h],' J',`Ep=mgh=${m}·10·${h}=${m*10*h}.`]},
+()=>{const F=R(2,9)*10,s=R(2,9),a=P([0,60,90]);const c=F*s*{0:1,60:.5,90:0}[a];return[`F=${F} N, ko’chish ${s} m, ular orasidagi burchak ${a}°. Kuch ishi?`,c,[F*s+F,F*s/3,F/s],' J',`A=F·s·cosα=${F}·${s}·cos${a}°=${f(c)}.`]},
+()=>{const A=R(2,9)*100,t=R(2,10);return[`${A} J ish ${t} s da bajarildi. Quvvat?`,A/t,[A*t,t/A,A/t/t],' W',`N=A/t=${A}/${t}=${f(A/t)}.`]},
+()=>{const a=R(2,8)*10,u=a+R(1,2)*10;return[`Foydali ish ${a} J, umumiy ish ${u} J. FIK?`,a/u*100,[u/a*100,100-a/u*100,a],' %',`η=Af/Au·100%=${a}/${u}·100=${f(a/u*100)}%.`]},
+()=>{const m=R(1,5)*2,v1=R(1,4),v2=v1+R(1,4);return[`${m} kg jism tezligi ${v1} dan ${v2} m/s gacha ortdi. Kuch ishi?`,m*(v2*v2-v1*v1)/2,[m*(v2-v1)*(v2-v1)/2,m*(v2-v1),m*v2*v2/2],' J',`A=ΔEk=m(v2²−v1²)/2=${m}·(${v2*v2}−${v1*v1})/2=${f(m*(v2*v2-v1*v1)/2)}.`]}],
+[()=>{const m=R(2,9),v=R(2,9);return[`${m} kg jism ${v} m/s tezlikda. Impuls?`,m*v,[m*v*v/2,m+v,m/v],' kg·m/s',`p=mv=${m}·${v}=${m*v}.`]},
+()=>{const F=R(2,9)*5,t=R(2,9);return[`${F} N kuch ${t} s ta’sir qildi. Impuls o’zgarishi?`,F*t,[F/t,F+t,F*t*t/2],' N·s',`I=Δp=F·t=${F}·${t}=${F*t}.`]},
+()=>{const a=R(2,6),b=R(2,8),c=R(1,4),u=a*b/(a+c);return[`${a} kg jism ${b} m/s da tinch ${c} kg jismga urilib yopishdi. Umumiy tezlik?`,u,[b/2,a*b/c,(a+c)*b],' m/s',`m1v1=(m1+m2)u → u=${a*b}/${a+c}=${f(u)}.`]},
+()=>{const m1=R(3,6),m2=R(1,2),v1=R(3,6),v2=R(1,2);return[`${m1} kg (${v1} m/s) va qarama-qarshi yo’nalgan ${m2} kg (${v2} m/s) jismlar yopishdi. Tezlik?`,(m1*v1-m2*v2)/(m1+m2),[(m1*v1+m2*v2)/(m1+m2),v1-v2,(v1+v2)/2],' m/s',`Impuls ishorali: (${m1*v1}−${m2*v2})/${m1+m2}=${f((m1*v1-m2*v2)/(m1+m2))}.`]},
+()=>{const m=R(2,9)*100,a=R(10,30),b=R(1,9)*2+a;return[`${m} kg avtomobil tezligi ${a} dan ${b} m/s gacha o’zgardi. Impuls o’zgarishi?`,m*(b-a),[m*(b+a),m*b,m*a],' kg·m/s',`Δp=m(v2−v1)=${m}·${b-a}=${m*(b-a)}.`]},
+()=>{const r=P([2,4,8]),u=R(2,4)*1000;return[`Gravitatsiyasiz raketa massasi ${r} marta kamaydi, u=${u} m/s. Tezlik (ln${r}=${f(Math.log(r))})?`,u*Math.log(r),[u*r,u*(r-1),u/r],' m/s',`v=u·ln(M0/M)=${u}·${f(Math.log(r))}=${f(u*Math.log(r))}.`]}],
+[()=>{const a=R(1,4),b=a+R(2,5),m1=R(1,3),m2=R(1,3),c=(m1*a+m2*b)/(m1+m2);return[`${m1} kg x=${a} m da, ${m2} kg x=${b} m da. MM koordinatasi?`,c,[(a+b)/2,m1*a+m2*b,(m1*b+m2*a)/(m1+m2)],' m',`xc=(m1x1+m2x2)/(m1+m2)=${m1*a+m2*b}/${m1+m2}=${f(c)}.`]},
+()=>{const m=R(4,9)*10,M=R(10,15)*10,l=R(2,6);return[`Odam ${m} kg, qayiq ${M} kg, odam qayiqqa nisbatan ${l} m yurdi. Qayiq siljishi?`,m*l/(M+m),[m*l/M,l,M*l/(M+m)],' m',`Δx=ml/(M+m)=${m*l}/${M+m}=${f(m*l/(M+m))}.`]},
+()=>{const a=R(1,6),b=R(1,6);return[`m1=${a} kg, m2=${b} kg. Keltirilgan massa?`,a*b/(a+b),[a+b,(a+b)/2,a*b],' kg',`μ=m1m2/(m1+m2)=${a*b}/${a+b}=${f(a*b/(a+b))}.`]},
+()=>{const m1=R(2,5),m2=R(1,3),v1=R(2,6),v2=R(1,5);return[`${m1} kg ${v1} m/s, ${m2} kg esa qarshi ${v2} m/s. MM tezligi?`,(m1*v1-m2*v2)/(m1+m2),[(v1-v2)/2,(m1*v1+m2*v2)/(m1+m2),m1*v1-m2*v2],' m/s',`vc=(m1v1−m2v2)/(m1+m2)=${m1*v1-m2*v2}/${m1+m2}.`]},
+()=>{const m1=R(1,4),m2=R(1,4),v=R(2,6),w=R(1,4)+v;return[`m1=${m1} kg, m2=${m2} kg qarama-qarshi harakatda, nisbiy tezlik ${w} m/s. MM sistemasidagi kinetik energiya?`,m1*m2*w*w/(2*(m1+m2)),[m1*m2*w*w/2,(m1+m2)*w*w/2,m1*m2*w/(m1+m2)],' J',`K'=μw²/2=${f(m1*m2/(m1+m2))}·${w*w}/2.`]},
+()=>{const m1=R(1,5),m2=R(1,5),d=R(2,9)*10;return[`m1=${m1} kg va m2=${m2} kg orasida ${d} m. MM m1 dan qancha uzoqda?`,d*m2/(m1+m2),[d*m1/(m1+m2),d/2,d*m2/m1],' m',`l1=d·m2/(m1+m2)=${f(d*m2/(m1+m2))} (og’irroq jismga yaqin).`]}],
+[()=>{const m=R(1,9),r=R(1,5)/10;return[`Yaxlit disk m=${m} kg, R=${r} m. I=?`,m*r*r/2,[m*r*r,m*r*r/4,m*r/2],' kg·m²',`I=½mR²=½·${m}·${f(r*r)}=${f(m*r*r/2)}.`]},
+()=>{const m=R(1,6),L=R(2,6)/2;return[`Sterjen m=${m} kg, L=${L} m. Uchidan o’tuvchi o’qqa I=?`,m*L*L/3,[m*L*L/12,m*L*L/2,m*L*L],' kg·m²',`I=mL²/3=${m}·${f(L*L)}/3=${f(m*L*L/3)}.`]},
+()=>{const I=R(2,9)/10,m=R(1,5),a=R(1,5)/5;return[`IC=${I} kg·m², m=${m} kg, o’qlar orasi ${a} m. Shteyner bo’yicha I=?`,I+m*a*a,[I-m*a*a,m*a*a,I*a*a],' kg·m²',`I=IC+ma²=${I}+${m}·${f(a*a)}=${f(I+m*a*a)}.`]},
+()=>{const M=R(1,9)/5,I=P([.02,.04,.05,.1,.2]);return[`M=${M} N·m, I=${I} kg·m². ε=?`,M/I,[M*I,I/M,M/I/I],' rad/s²',`ε=M/I=${M}/${I}=${f(M/I)}.`]},
+()=>{const I=P([.02,.04,.1,.2]),w=R(2,10)*5;return[`I=${I} kg·m², ω=${w} rad/s. Aylanma kinetik energiya?`,I*w*w/2,[I*w*w,I*w/2,I*w],' J',`K=Iω²/2=${I}·${w*w}/2=${f(I*w*w/2)}.`]},
+()=>{const s=P([['halqa',1],['yaxlit disk',.5],['yaxlit shar',.4]]);return[`30° qiyadan sirpanmay dumalayotgan ${s[0]} tezlanishi (g=10)?`,5/(1+s[1]),[5,5*(1+s[1]),2.5],' m/s²',`a=g·sinα/(1+I/mR²)=5/(1+${s[1]})=${f(5/(1+s[1]))}.`]},
+()=>{const I=R(3,6),k=P([2,3]),n=R(1,3);return[`Konkida uchuvchi ${n} Hz da aylanmoqda. I ${k} marta kamaysa, chastota?`,n*k,[n/k,n*k*k,n+k],' Hz',`I1ω1=I2ω2 → ν2=ν1·${k}=${n*k}.`]}],
+[()=>{const F=R(2,9)*10,d=R(1,5)/10;return[`Kalitga ${F} N kuch yelkaga tik, yelka ${d} m. Moment?`,F*d,[F/d,F*d/2,F+d],' N·m',`M=F·d=${F}·${d}=${f(F*d)}.`]},
+()=>{const F=R(1,5)*10,D=R(2,6)/10;return[`Rul: ikki ${F} N qarama-qarshi kuch, diametr ${D} m. Juft momenti?`,F*D,[F*D/2,2*F*D,F/D],' N·m',`M=F·d=${F}·${D}=${f(F*D)} (d=diametr).`]},
+()=>{const M=R(2,9)*10,w=R(5,20)*10;return[`M=${M} N·m, ω=${w} rad/s. Quvvat?`,M*w,[M/w,M*w/2,M+w],' W',`P=Mω=${M}·${w}=${M*w}.`]},
+()=>{const I1=R(3,6),k=P([2,3]),w=R(2,5)*2;return[`I1=${I1}, ω1=${w} rad/s. I ${k} marta kamaysa (M=0), ω2?`,w*k,[w/k,w*k*k,w+k],' rad/s',`L=const: ω2=ω1·I1/I2=${w}·${k}=${w*k}.`]},
+()=>{const L=P([1,1.5,2,3]);return[`Gorizontal bir jinsli sterjen (L=${L} m) bir uchidan qo’yib yuborildi (g=10). Boshlang’ich ε?`,15/L,[10/L,30/L,20/(3*L)],' rad/s²',`ε=3g/(2L)=15/${L}=${f(15/L)}.`]},
+()=>{const M=R(2,9)*5,p=R(2,10);return[`Doimiy M=${M} N·m moment jismni ${p} rad ga burdi. Ish?`,M*p,[M/p,M*p/2,M+p],' J',`A=M·Δφ=${M}·${p}=${M*p}.`]},
+()=>{const m=R(1,4),M=R(1,4)*2;return[`Disk (M=${M} kg) ipiga m=${m} kg yuk osilgan (g=10). Yuk tezlanishi?`,20*m/(2*m+M),[10,10*m/(m+M),20*m/(2*m+M)/2],' m/s²',`a=2mg/(2m+M)=${20*m}/${2*m+M}=${f(20*m/(2*m+M))}.`]}],
+[()=>{const F=R(1,9)*100,S=R(1,5)*2;return[`F=${F} N, S=${S} mm². Kuchlanish?`,F/S,[F/S/10,F*S,F/S*10],' MPa',`σ=F/S=${F}/${S}=${f(F/S)} N/mm²=${f(F/S)} MPa.`]},
+()=>{const s=P([100,200,300,400]);return[`σ=${s} MPa, E=200 GPa. Nisbiy uzayish (%)?`,s/2000,[s/200,s/20000,s/1000],' %',`ε=σ/E=${s}/200000=${f(s/200000)} → ${f(s/2000)}%.`]},
+()=>{const a=R(1,4)*100,b=R(1,4)*100;return[`${a} va ${b} N/m prujinalar ketma-ket. Umumiy bikrlik?`,a*b/(a+b),[a+b,(a+b)/2,a*b],' N/m',`1/k=1/${a}+1/${b} → k=${f(a*b/(a+b))}.`]},
+()=>{const a=R(1,4)*100,b=R(1,4)*100;return[`${a} va ${b} N/m prujinalar parallel. Umumiy bikrlik?`,a+b,[a*b/(a+b),(a+b)/2,a*b],' N/m',`k=k1+k2=${a+b}.`]},
+()=>{const mu=P([.25,.3,.4]);return[`ε=2·10⁻³, μ=${f(mu)}. ΔV/V (·10⁻³)?`,2*(1-2*mu),[2*(1+2*mu),2*(1-mu),2],' ·10⁻³',`ΔV/V=ε(1−2μ)=2·${f(1-2*mu)}=${f(2*(1-2*mu))}·10⁻³.`]},
+()=>{const F=R(2,9)*2,k=P([100,200,400,800]);return[`k=${k} N/m prujina ${F} N kuch bilan cho’zildi. Energiya?`,F*F/(2*k),[F*F/k,F*k/2,F/(2*k)],' J',`U=F²/(2k)=${F*F}/${2*k}=${f(F*F/(2*k))}.`]},
+()=>{const m=R(1,5),k=P([200,500,1000]);return[`k=${k} N/m prujinaga ${m} kg yuk birdan qo’yib yuborildi (g=10). Maks. uzayish?`,2*m*10/k,[m*10/k,4*m*10/k,m*5/k],' m',`xmax=2x0=2mg/k=${20*m}/${k}=${f(2*m*10/k)}.`]}]
+];
+const C=[
+[["Fizik hodisa va kimyoviy jarayon farqi?","Fizik hodisada modda tarkibi o’zgarmaydi","Fizik hodisada issiqlik ajralmaydi","Kimyoviy jarayon faqat suyuqlikda bo’ladi","Farqi yo’q","Modda tarkibi o’zgarsa — kimyoviy jarayon, o’zgarmasa — fizik hodisa."],
+["Materiyaning ikki ko’rinishi qaysilar?","Modda va maydon","Energiya va massa","Jism va vaqt","Atom va molekula","Fizikada materiya — modda va maydon."],
+["Moddiy nuqta nima?","Shakl va o’lchami hisobga olinmasa bo’ladigan jism","Massasi nolga teng jism","Hajmi 1 m³ jism","Tinch turgan jism","Masala sharoitida o’lchamlari e’tiborsiz qoldiriladigan darajada kichik jism."],
+["Ko’chish va yo’lning farqi?","Ko’chish — vektor, yo’l — trayektoriya uzunligi","Ikkalasi ham vektor","Yo’l doim ko’chishdan kichik","Ular bir xil","Ko’chish boshlang’ich va oxirgi nuqtani tutashtiruvchi vektor; yo’l esa trayektoriya uzunligi (skalyar)."],
+["a×b vektor ko’paytma qanday vektor?","a va b ga perpendikulyar","a bilan parallel","Skalyar son","b bilan parallel","Natija ikkala vektorga tik; moduli |a||b|sinθ."]],
+[["Tekis harakatda nima o’zgarmaydi?","Tezlik moduli","Tezlik yo’nalishi","Tezlanish","Yo’l","Tekis harakat: |v|=const (yo’nalish o’zgarishi mumkin, masalan aylanada)."],
+["Aylana bo’ylab tekis harakatda tezlanish nolmi?","Yo’q, markazga intilma tezlanish bor","Ha, tezlik o’zgarmaydi","Ha, modul o’zgarmasa tezlanish yo’q","Faqat burchak tezlanish bor","Yo’nalish o’zgaradi, shuning uchun a_n=ω²R≠0."],
+["Oniy tezlik nima?","Ko’chishdan vaqt bo’yicha 1-hosila","Yo’lning vaqtga nisbati","Ko’chishdan 2-hosila","Tezlikning integrali","v=ds/dt."],
+["a_n va a_t nimani o’zgartiradi?","a_n — yo’nalishni, a_t — tezlik modulini","a_n — modulni, a_t — yo’nalishni","Ikkalasi modulni","Ikkalasi yo’nalishni","Normal tezlanish yo’nalishni, tangensial esa modulni o’zgartiradi."],
+["Otilgan jismning y bo’yicha harakat tenglamasi?","d²y/dt²=−g","d²y/dt²=0","d²y/dt²=g·t","dy/dt=−g","Vertikalda faqat og’irlik tezlanishi (x bo’yicha d²x/dt²=0)."]],
+[["Nyuton 1-qonuni: ΣF=0 bo’lsa jism...","tinch yoki tekis to’g’ri chiziqli harakatda bo’ladi","faqat tinch turadi","tezlanadi","to’xtaydi","ΣF=0 → v=const."],
+["Massa nimaning o’lchovi?","Inertlikning","Og’irlikning","Kuchning","Hajmning","Massa — jism inertligining o’lchovi."],
+["Og’irlik kuchi va jism og’irligi farqi?","Og’irlik kuchi jismga, og’irlik tayanch yoki osmaga qo’yiladi","Ular bir xil","Og’irlik kuchi tayanchga qo’yiladi","Og’irlik faqat Oyda bor","Og’irlik kuchi — Yerga tortilishdan kuch; og’irlik — tayanch/osmaga beradigan bosim."],
+["Nyuton 3-qonuni kuchlari nega bir-birini yo’qotmaydi?","Ular turli jismlarga qo’yilgan","Ular har xil kattalikda","Ular bir jismga qo’yilgan","Ular bir yo’nalishda","Ta’sir va aks ta’sir turli jismlarga qo’yiladi."],
+["G=6,67·10⁻¹¹ nimani bildiradi?","1 kg ikki jism 1 m da shuncha N bilan tortishadi","Erkin tushish tezlanishini","Yer massasini","Yorug’lik tezligini","G ning fizik ma’nosi shu."]],
+[["Energiya nima?","Jismning ish bajara olish qobiliyati","Kuch impulsi","Jism tezligi","Ko’chish","Energiya — ish bajarish qobiliyati."],
+["Gravitatsion Ep formulasida nega 1/r?","Kuch ~1/r²; uni integrallash 1/r beradi","r doim 1 ga teng","Energiya masofaga bog’liq emas","Faqat Yerda ishlaydi","Ish A=∫F ds, F~1/r² → Ep~1/r."],
+["FIK 100% dan katta bo’lishi mumkinmi?","Yo’q, foydali ish umumiy ishdan katta emas","Ha, ba’zi mashinalarda","Ha, issiqlik dvigatelida","Ishqalanish yo’q bo’lsa ha","Energiya saqlanadi, shuning uchun η≤100%."],
+["Kuch ko’chishga qarshi yo’nalsa, ish?","Manfiy","Musbat","Nolga teng","Cheksiz","α=180°, cosα=−1 → A<0."],
+["Ish va kinetik energiya bog’lanishi?","A=Ek(2)−Ek(1)","A=Ek(1)+Ek(2)","A=Ek·t","A=Ek/m","Ish kinetik energiya o’zgarishiga teng."]],
+[["Yopiq sistema nima?","Tashqaridan energiya berilmaydigan va tashqariga uzatilmaydigan sistema","Idish ichidagi jismlar","Tinch sistema","Massasi o’zgarmas sistema","Ma’ruzadagi ta’rif shu."],
+["Noelastik to’qnashuvda nima bo’ladi?","Jismlar birga harakat qiladi, energiyaning bir qismi ichki energiyaga aylanadi","Energiya saqlanadi, impuls yo’qoladi","Jismlar sakraydi","Impuls ham yo’qoladi","Impuls saqlanadi; energiya E1+E2=Eu+Q."],
+["Raketa vakuumda qanday uchadi?","Gazni orqaga otadi, impuls saqlanishi tufayli oldinga ketadi","Havodan itarilib","Yerdan tortilib","Quyosh bosimi bilan","Meshcherskiy tenglamasidagi reaktiv kuch µu."],
+["Kuch impulsi nimaga teng?","Jism impulsining o’zgarishiga","Kinetik energiyaga","Massaga","Tezlanishga","I=F·t=Δp."],
+["Siolkovskiy formulasida tezlik nimaga bog’liq?","Gaz chiqish tezligi u va M0/M nisbatiga","Faqat massaga","Faqat vaqtga","Faqat Yer tortishiga","v=u·ln(M0/M)."]],
+[["Tizim impulsini faqat nima o’zgartiradi?","Tashqi kuchlar","Ichki kuchlar","Massa markazi","Hech narsa","dP/dt=F_tashqi; ichki kuchlar juft-juft yo’qoladi."],
+["Ichki portlash MM traektoriyasini o’zgartiradimi?","Yo’q","Ha","Faqat vertikalda","Faqat parabolada","Ichki kuchlar MM harakatiga ta’sir qilmaydi."],
+["Massalari teng bo’lmagan ikki jismda MM qayerda?","Og’irroq jismga yaqin, tutashtiruvchi kesmada","O’rtada","Yengil jismga yaqin","Kesmadan tashqarida","l1/l2=m2/m1."],
+["Yopiq tizim MM qanday harakatlanadi?","Tinch yoki tekis to’g’ri chiziqli","Tezlanuvchan","Aylana bo’ylab","Tebranib","F_tash=0 → vc=const."],
+["Bir jinsli tortishishda MM nima bilan ustma-ust?","Og’irlik markazi bilan","Faqat geometrik markaz bilan","Inersiya markazi bilan emas","Hech qaysi bilan","Eslatma: MM va og’irlik markazi bir xil."]],
+[["Inersiya momenti nimalarga bog’liq?","Massa, shakl va o’q joylashuvi","Faqat massa","Faqat burchak tezlik","Faqat radius","I=Σmiri² — massa o’qdan qanchalik uzoq."],
+["Qiyadan qaysi jism eng tez tushadi?","Yaxlit shar","Yaxlit disk","Halqa","Hammasi bir xil","I/mR² kichik bo’lsa a katta: shar 2/5."],
+["Shteyner teoremasi qaysi o’qlar uchun?","MM dan o’tuvchi va unga parallel o’q","Har qanday tik o’qlar","Faqat simmetriya o’qi","Faqat sferalar","I=IC+ma²."],
+["Qo’zg’almas o’q atrofida erkinlik darajasi?","1 (burilish burchagi φ)","3","6","2","Erkin jismda 6 ta, qo’zg’almas o’qda 1 ta."],
+["Dumalashda tegish nuqtasi tezligi?","Nol (oniy aylanish o’qi)","vC","2vC","ωR/2","Sirpanmasa A nuqtada vA=0."]],
+[["Kuch momenti qachon nol?","Ta’sir chizig’i o’qdan o’tsa yoki unga parallel bo’lsa","Kuch katta bo’lsa","Kuch o’qqa tik bo’lsa","Hech qachon","d=0 → M=0."],
+["Kuchlar juftligi nimani beradi?","Faqat aylantiradi, natijaviy kuch nol","Faqat siljitadi","Ham siljitadi","Hech narsa","F va −F bir chiziqda emas: M=Fd."],
+["Impuls momenti qachon saqlanadi?","Tashqi kuchlar momenti nol bo’lsa","Kuch nol bo’lsa har doim","Energiya o’zgarsa","Hech qachon","M=0 → L=const."],
+["Qattiq jism muvozanat sharti?","ΣF=0 va ΣM=0","Faqat ΣF=0","Faqat ΣM=0","ΣF=ΣM","Ikkala shart ham kerak."],
+["Giroskop nega tushmaydi?","M ⊥ L, o’q pretsessiya qiladi","Og’irlik kuchi yo’q","Ishqalanish yo’q","L nolga teng","dL/dt=M ⊥ L, Ω=mgl/(Iω)."]],
+[["Elastik va plastik deformatsiya farqi?","Elastikda shakl tiklanadi, plastikda qoldiq qoladi","Aksincha","Farqi yo’q","Plastik faqat metallarda","Kuch olingach elastik yo’qoladi."],
+["Puasson koeffitsiyenti chegarasi?","0 ≤ μ ≤ 0,5","0 ≤ μ ≤ 1","−1 ≤ μ ≤ 0","μ>1","μ>0,5 bo’lsa cho’zilganda hajm kamayardi."],
+["Guk qonuni qachon o’rinli?","Proporsionallik chegarasigacha","Har doim","Uzilishda","Plastik sohada","σ<σpr da σ=Eε."],
+["Mustahkamlik chegarasi σm nima?","Uzilishdan oldingi maksimal kuchlanish","Elastiklik chegarasi","Yung moduli","Oquvchanlik boshlanishi","σm — diagrammadagi eng yuqori kuchlanish."],
+["Dinamik yuklanishda nega kuchlanish 2 marta katta?","Yuk birdan qo’yilsa xmax=2x0","Yuk og’irroq","Prujina bikrligi 2 marta","Ishqalanish","mgx=kx²/2 → x=2mg/k."]]];
+C.forEach((a,i)=>a.forEach(x=>{Q[i].push(x.slice(0,5));E[i].push(x[5])}));
+(function(){G.forEach((gs,i)=>{const seen=new Set(Q[i].map(q=>q[0]));let n=0;while(Q[i].length<30&&n++<800){const[q,c,w,u,e]=gs[n%gs.length]();if(seen.has(q))continue;seen.add(q);const v=[c];w.forEach(x=>{if(!v.some(y=>Math.abs(y-x)<1e-6))v.push(x)});let k=1;while(v.length<4){const x=c+(k%2?1:-1)*Math.max(1,Math.abs(c)*.5)*Math.ceil(k/2);k++;if(!v.some(y=>Math.abs(y-x)<1e-6))v.push(x)}Q[i].push([q,...v.slice(0,4).map(x=>f(x)+u)]);E[i].push(e)}})})();Q.forEach((q,i)=>{const o=q.map((x,k)=>[x,E[i][k]]).sort(()=>Math.random()-.5);Q[i]=o.map(x=>x[0]);E[i]=o.map(x=>x[1])});
+const SIM='<div class="card"><h2>🎯 Simulyatsiya: og’ma otilgan jism</h2><p>Burchak va tezlikni o’zgartiring: parabola darhol chiziladi (d²x/dt²=0, d²y/dt²=−g).</p>Burchak: <b id="av"></b>° <input type="range" id="an" min="5" max="85" value="45" oninput="sim()"><br>Tezlik: <b id="vv"></b> m/s <input type="range" id="vs" min="5" max="40" value="20" oninput="sim()"><canvas id="cv" width="640" height="260" style="width:100%;background:var(--bg);border-radius:10px;margin-top:8px"></canvas><div class="f" id="so"></div><div class="tip">Maksimal masofa 45° da bo’ladi. 30° va 60° da masofa bir xil!</div></div>';
+function sim(){const a=+document.getElementById('an').value,v=+document.getElementById('vs').value,g=9.8,r=a*Math.PI/180,tt=2*v*Math.sin(r)/g,Rg=v*v*Math.sin(2*r)/g,H=v*v*Math.sin(r)**2/(2*g);document.getElementById('av').textContent=a;document.getElementById('vv').textContent=v;
+const c=document.getElementById('cv').getContext('2d'),W=640,Hh=260,k=Math.min(600/Math.max(Rg,1),200/Math.max(H,1));c.clearRect(0,0,W,Hh);c.strokeStyle=c.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--ac').trim()||'#3a35b5';c.lineWidth=3;c.beginPath();
+for(let t=0;t<=tt;t+=tt/80){const x=20+v*Math.cos(r)*t*k,y=Hh-20-(v*Math.sin(r)*t-g*t*t/2)*k;t?c.lineTo(x,y):c.moveTo(x,y)}c.stroke();c.fillRect(0,Hh-20,W,2);c.beginPath();c.arc(20+Rg*k,Hh-20,5,0,7);c.fill();
+document.getElementById('so').textContent='Uchish vaqti: '+f(tt)+' s   Masofa: '+f(Rg)+' m   Maks. balandlik: '+f(H)+' m';}
+function badge(){T.forEach((t,i)=>{let b='';try{b=localStorage.getItem('b'+i)||''}catch(e){}nav.children[i].textContent=t.n+(b?' ✓'+b:'')})}
+function fin(i,sc,n){try{const o=+(localStorage.getItem('b'+i)||'0/0').split('/')[0];if(sc>=o)localStorage.setItem('b'+i,sc+'/'+n)}catch(e){}badge();if(sc==n)for(let k=0;k<45;k++){const e=document.createElement('span');e.className='cf';e.textContent=P(['🎉','⭐','⚛️','🔬','🚀']);e.style.left=R(0,95)+'%';e.style.animationDelay=Math.random()+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),4000)}}
+T.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t.n;b.onclick=()=>show(i);nav.appendChild(b)});
+badge();let s=parseInt((location.hash.match(/t(\d)/)||[])[1]);show(s>0&&s<10?s-1:0);
+</script></body></html>

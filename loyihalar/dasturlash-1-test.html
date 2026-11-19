@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dasturlash 1 — Test o‘yini & Kod Simulyatori</title>
+<style>
+:root{--bg:#f3f5fb;--card:#fff;--tx:#1b2140;--mut:#6b7394;--pr:#4f46e5;--ok:#16a34a;--okb:#dcfce7;--no:#dc2626;--nob:#fee2e2;--bd:#dfe3f1;--codebg:#1e2235;--codetx:#e2e8f0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1226;--card:#171c36;--tx:#eef0ff;--mut:#9aa2c8;--pr:#818cf8;--okb:#0f3a24;--nob:#4a1620;--bd:#2a3158;--codebg:#090c1a;--codetx:#e2e8f0;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1226;--card:#171c36;--tx:#eef0ff;--mut:#9aa2c8;--pr:#818cf8;--okb:#0f3a24;--nob:#4a1620;--bd:#2a3158;--codebg:#090c1a;--codetx:#e2e8f0;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh}
+.w{max-width:780px;margin:0 auto;padding:18px 16px 40px}
+h1{font-size:clamp(1.6rem,5vw,2.3rem);margin:8px 0}h2{margin:.2em 0}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:20px;box-shadow:0 6px 24px rgba(30,40,100,.08)}
+.hero{text-align:center}.hero p{color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:18px 0}
+.t{background:var(--card);border:2px solid var(--bd);border-radius:14px;padding:14px;text-align:left;cursor:pointer;color:var(--tx);font:inherit;transition:.15s}
+.t:hover{border-color:var(--pr);transform:translateY(-2px)}.t b{display:block;color:var(--pr)}.t small{color:var(--mut)}
+.t.all{grid-column:1/-1;background:var(--pr);border-color:var(--pr);color:#fff}.t.all b,.t.all small{color:#fff}
+.t.sim{border-color:#0ea5e9}.t.sim b{color:#0284c7}
+@media (prefers-color-scheme:dark){.t.sim b{color:#38bdf8}}
+.bar{height:8px;background:var(--bd);border-radius:9px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:var(--pr);transition:width .3s}
+#tm i{background:var(--ok)}
+.top{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:var(--mut);font-size:.92rem;font-weight:600}
+.q{font-size:1.15rem;font-weight:700;margin:14px 0;white-space:pre-wrap;line-height:1.45}
+pre.codebox{background:var(--codebg);color:var(--codetx);padding:14px 16px;border-radius:12px;font-family:"Fira Code",Consolas,monospace;font-size:.92rem;line-height:1.5;overflow-x:auto;margin:10px 0;border:1px solid var(--bd);white-space:pre}
+.console{background:#0b0f19;color:#4ade80;padding:12px 15px;border-radius:10px;font-family:Consolas,monospace;font-size:.92rem;margin-top:10px;border-left:4px solid #22c55e;white-space:pre-wrap}
+.console .err{color:#f87171}
+.trace{background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:12px;margin-top:10px;font-size:.9rem;line-height:1.5}
+.o{display:flex;gap:10px;align-items:center;width:100%;text-align:left;margin:9px 0;padding:13px 14px;background:var(--card);color:var(--tx);border:2px solid var(--bd);border-radius:12px;font:inherit;cursor:pointer;transition:.15s}
+.o:hover:not(:disabled){border-color:var(--pr)}.o:disabled{cursor:default}
+.o span{flex:none;width:28px;height:28px;border-radius:50%;background:var(--bd);display:grid;place-items:center;font-weight:700;font-size:.85rem}
+.o.ok{background:var(--okb);border-color:var(--ok)}.o.ok span{background:var(--ok);color:#fff}
+.o.no{background:var(--nob);border-color:var(--no);animation:sh .35s}.o.no span{background:var(--no);color:#fff}
+@keyframes sh{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.b{background:var(--pr);color:#fff;border:0;border-radius:12px;padding:12px 20px;font:inherit;font-weight:700;cursor:pointer;margin-top:10px;margin-right:6px}
+.b:hover{opacity:.92}.b.g{background:transparent;color:var(--pr);border:2px solid var(--pr)}
+.b.run{background:#16a34a}.b.step{background:#0284c7}
+.fb{min-height:1.6em;font-weight:700;margin-top:6px}.fb.ok{color:var(--ok)}.fb.no{color:var(--no)}
+.big{font-size:3rem;font-weight:800;color:var(--pr);margin:0}
+.wish{font-size:clamp(1.5rem,5vw,2rem);font-weight:800;margin:14px 0;background:linear-gradient(90deg,var(--pr),var(--ok));-webkit-background-clip:text;background-clip:text;color:transparent}
+.rv{text-align:left;margin-top:16px}.rv div{padding:10px;border-radius:10px;margin:7px 0;background:var(--nob);border-left:4px solid var(--no)}
+.rv small{color:var(--ok);font-weight:700;display:block;margin-top:3px}
+footer{text-align:center;color:var(--mut);margin-top:26px;font-size:.92rem}footer b{color:var(--tx)}
+.h{display:none}.pz{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}.pz>div{background:var(--bg);border-radius:12px;padding:10px}#jt{margin:10px 0}
+.sim-inp{width:100%;padding:12px 14px;border-radius:12px;border:2px solid var(--bd);background:var(--bg);color:var(--tx);font-family:Consolas,monospace;font-size:1rem;margin-top:8px}
+.sim-inp:focus{outline:none;border-color:var(--pr)}
+.badge{display:inline-block;padding:3px 9px;border-radius:8px;font-size:.78rem;font-weight:700;background:var(--okb);color:var(--ok);margin-left:6px}
+</style>
+</head>
+<body>
+<div class="w">
+ <section id="home" class="hero">
+  <h1>💻 Dasturlash 1 — Test & Kod Simulyatori</h1>
+  <p>Har bir mavzuda aniq <b>15 tadan</b> savol! Kodlarni qadamma-qadam simulyatsiya qiling, natijasini toping va o‘z bilimingizni sinang.</p>
+  <div class="grid" id="topics"></div>
+  <h2>🖥️ Kod Simulyatsiyasi & Mantiq o‘yinlari</h2>
+  <div class="grid">
+   <button class="t sim" onclick="simInit(0)"><b>▶️ Kod natijasi simulyatori</b><small>150 ta C++ kodni jonli ishga tushiring va tahlil qiling</small></button>
+   <button class="t" onclick="bInit()"><b>🌉 Ko‘prik va chiroq</b><small>4 kishini 15 daqiqada o‘tkazing</small></button>
+   <button class="t" onclick="jI()"><b>🫗 4L va 9L idishlar</b><small>1 dan 9 gacha hajmlarni hosil qiling</small></button>
+  </div>
+ </section>
+
+ <section id="game" class="c h">
+  <div class="top"><span id="inf"></span><span id="sc"></span></div>
+  <div class="bar"><i id="pg"></i></div>
+  <div class="bar" id="tm"><i></i></div>
+  <div class="q" id="qt"></div>
+  <pre class="codebox h" id="qcode"></pre>
+  <div id="op"></div>
+  <div class="fb" id="fb"></div>
+  <div id="qsimbox" class="h">
+   <button class="b run" id="runBtn" onclick="runQCode()">▶ Kodni ishga tushirish (Simulyatsiya)</button>
+   <div class="console h" id="qconsole"></div>
+   <div class="trace h" id="qtrace"></div>
+  </div>
+  <button class="b h" id="nx">Keyingi ▶</button>
+ </section>
+
+ <section id="sim" class="c h">
+  <div class="top"><span id="sinf"></span><span id="ssc"></span></div>
+  <h2>🖥️ C++ Kod Simulyatsiyasi (Nima chiqadi?)</h2>
+  <p style="color:var(--mut);margin:4px 0">Kodni o‘qing, konsolga nima chiqishini taxmin qiling, so‘ng <b>"Tekshirish"</b> yoki <b>"▶ Kodni yurgizish"</b> tugmasini bosing:</p>
+  <select id="simTopic" class="sim-inp" style="font-family:inherit;margin-bottom:8px" onchange="simFilter(this.value)"></select>
+  <pre class="codebox" id="scode"></pre>
+  <input type="text" id="sinp" class="sim-inp" placeholder="Kutilayotgan natijani yozing (masalan: 15 yoki Salom)...">
+  <div>
+   <button class="b" onclick="simCheck()">✔ Javobni tekshirish</button>
+   <button class="b run" onclick="simRun()">▶ Kodni yurgizish</button>
+   <button class="b step" onclick="simStep()">👣 Qadamma-qadam izoh</button>
+   <button class="b g" onclick="simNext()">Keyingi kod ➔</button>
+  </div>
+  <div class="fb" id="sfb"></div>
+  <div class="console h" id="scon"></div>
+  <div class="trace h" id="strace"></div>
+  <div style="margin-top:14px"><button class="b g" onclick="menu()">🏠 Bosh sahifa</button></div>
+ </section>
+
+ <section id="end" class="c hero h">
+  <h2 id="et"></h2>
+  <p class="big" id="es"></p>
+  <p id="ep"></p>
+  <div class="wish">🎓 Imtihondan yaxshi o‘ting! 🍀</div>
+  <button class="b" id="again">🔁 Qayta o‘ynash</button>
+  <button class="b g" id="menu">🏠 Bosh sahifa</button>
+  <div class="rv" id="rv"></div>
+ </section>
+
+ <section id="bridge" class="c h"><h2>🌉 Ko‘prik va chiroq</h2><p>Bir vaqtda ko‘pi bilan 2 kishi chiroq bilan o‘tadi, vaqt — sekinrog‘i bo‘yicha. Hamma o‘ng qirg‘oqqa o‘tsin!</p><div class="pz"><div><b>Chap qirg‘oq</b><div id="bl"></div></div><div><b>O‘ng qirg‘oq</b><div id="br"></div></div></div><p class="fb" id="bi"></p><button class="b" id="bm" onclick="bGo()">Ko‘prikdan o‘tish ➔</button> <button class="b g" onclick="bInit()">↺ Qayta</button> <button class="b g" onclick="menu()">🏠 Bosh sahifa</button></section>
+
+ <section id="jug" class="c h"><h2>🫗 4L va 9L idishlar</h2><p>Idishlar yordamida 1 dan 9 gacha hajmlarni hosil qiling va “Tasdiqlash” ni bosing.</p><div class="top"><span id="j9"></span><span id="j4"></span><span id="jmv"></span></div><div class="bar"><i id="b9"></i></div><div class="bar"><i id="b4"></i></div><div class="fb" id="jst"></div><div class="pz" id="jbt"></div><div class="top" id="jt"></div><button class="b g" onclick="jI()">↺ Qayta</button> <button class="b g" onclick="menu()">🏠 Bosh sahifa</button></section>
+
+ <footer>Yaratuvchi: <b>Begimov O‘rolbek</b> · Cyber University · Dasturlash 1</footer>
+</div>
+<script>
+var T=[
+ "Kirish: algoritm, kompilyator",
+ "Ma’lumot turlari va operatorlar",
+ "if, if-else, switch",
+ "Takrorlanuvchi jarayonlar",
+ "Funksiyalar",
+ "Argument uzatish va rekursiya",
+ "Massivlar",
+ "2 o‘lchamli massivlar, saralash",
+ "Satrlar (strings)",
+ "C++ dastur kodlari (natijani toping)"
+];
+
+// Har bir element: [mavzu_id, savol, togri_javob, var2, var3, var4, kod_yoki_null, simulyatsiya_izohi]
+var Q=[
+// ==================== 1-MAVZU (15 ta) ====================
+[1,"Dasturlash tili nima?","Mikroprotsessorli qurilmalar uchun dastur yozishning rasmiy tili","Faqat matn muharriri","Kompyuterning apparat qismi","Operatsion tizim",null,"Dasturlash tili — inson va kompyuter o‘rtasida buyruqlarni aniq ifodalovchi formal til."],
+[1,"Qaysi biri algoritmning xossasi EMAS?","Cheksizlik","Aniqlik","Chekliligi","Natijaviylik",null,"Algoritm chekli qadamlardan iborat bo‘lishi shart, cheksizlik xato hisoblanadi."],
+[1,"Qaysi til kompilyatorli til hisoblanadi?","C++","Python","JavaScript","Psevdokod",null,"C++ kodi avval to‘liq mashina kodiga (.exe) o‘giriladi, so‘ng ishga tushiriladi."],
+[1,"Interpretator kodda xato topsa nima bo‘ladi?","Shu qatorgacha qism ishlaydi, keyin to‘xtaydi","Dastur umuman ishga tushmaydi","Xato avtomatik tuzatiladi",".exe fayl hosil bo‘ladi",null,"Interpretator kodni qatorma-qator o‘qib bajaradi, xato uchragan joyda to‘xtaydi."],
+[1,"Har bir C++ dasturi qaysi funksiyadan boshlanadi?","main()","start()","begin()","cout()","int main() {\n    cout << \"Boshlandi\";\n    return 0;\n}","Kompilyator dasturni bajarishni doimo int main() funksiyasidan boshlaydi."],
+[1,"C++ da bir qatorlik izoh qanday yoziladi?","//","/*","#","--","// Bu izoh\ncout << 2026;","// belgisidan keyingi qism kompilyator tomonidan e'tiborsiz qoldiriladi."],
+[1,"Kompilyatsiya natijasida qanday fayl hosil bo‘ladi?","Bajariladigan fayl (.exe)","Faqat izoh","Psevdokod","Kutubxona nomi",null,"Windows tizimida C++ kompilyatori .cpp fayldan .exe bajariluvchi fayl yaratadi."],
+[1,"#include <iostream> nima uchun kerak?","Kirish/chiqish (cin, cout) uchun","Matematik funksiyalar uchun","Massiv yaratish uchun","Fayl o‘chirish uchun","#include <iostream>\nusing namespace std;\nint main() { cout << \"OK\"; }","iostream (Input/Output Stream) cin va cout oqimlarini ta'minlaydi."],
+[1,"Python qanday til hisoblanadi?","Interpretatorli","Kompilyatorli","Mashina tili","Psevdokod",null,"Python kodi bajarilish vaqtida interpretator orqali satrma-satr tarjima qilinadi."],
+[1,"C++ tilining yaratuvchisi kim?","Bjarne Stroustrup","Guido van Rossum","James Gosling","Linus Torvalds",null,"Bjarne Stroustrup 1979-yilda C tilini kengaytirib C++ ni yaratgan."],
+[1,"cout << \"Salom\" << endl;  endl nima qiladi?","Yangi qatorga o‘tkazadi","Dasturni tugatadi","Xotirani tozalaydi","Izoh yozadi","cout << \"Salom\" << endl << \"Dunyo\";","endl (end line) kursorni keyingi satrga tushiradi va buferni tozalaydi."],
+[1,"Quyidagi kod ekranga nima chiqaradi?","10 + 5 = 15","10 + 5 = 10 + 5","15","Xato","cout << \"10 + 5 = \" << 10 + 5;","Qo‘shtirnoq ichidagi matn o‘zgarishsiz, tashqaridagi ifoda esa hisoblanib chiqadi."],
+[1,"Quyidagi kod natijasi qanday ko‘rinishda chiqadi?","SalomDunyo","Salom Dunyo","Salom\nDunyo","Xato","cout << \"Salom\";\ncout << \"Dunyo\";","cout avtomatik yangi qatorga o‘tkazmaydi, shuning uchun so‘zlar qo‘shilib chiqadi."],
+[1,"return 0; main() funksiyasi oxirida nimani bildiradi?","Dastur xatosiz muvaffaqiyatli yakunlanganini","Natija nolga tengligini","Dastur qayta boshlanishini","Xotira to‘lganini","int main() {\n    return 0;\n}","Operatsion tizimga 0 kodi qaytarilishi dastur normal tugaganini anglatadi."],
+[1,"Ko‘p qatorli izoh qaysi belgilar orasiga yoziladi?","/* ... */","// ... //","<!-- ... -->","# ... #","/* Ko'p qatorli\n   izoh namunasi */\ncout << 1;","/* bilan ochilib */ bilan yopilgan barcha qatorlar izoh hisoblanadi."],
+
+// ==================== 2-MAVZU (15 ta) ====================
+[2,"Qaysi o‘zgaruvchi nomi to‘g‘ri?","ism1","1ism","Mening Yoshim","return",null,"O‘zgaruvchi nomi raqam bilan boshlanmaydi, probel bo‘lmaydi va kalit so‘z bo‘la olmaydi."],
+[2,"Quyidagi kod natijasi nima?","B","A","66","C","char ch = 'A';\nch = ch + 1;\ncout << ch;","'A' ning ASCII kodi 65. 65 + 1 = 66, char turida 66 bu 'B' harfidir."],
+[2,"x nechaga teng bo‘ladi?","6","5","1","true","bool flag = true;\nint x = flag + 5;\ncout << x;","bool turidagi true qiymati arifmetik amalda 1 ga teng: 1 + 5 = 6."],
+[2,"Butun sonli bo‘lish natijasi nima?","2","2.5","3","0","cout << 10 / 4;","Ikkala operand ham int bo‘lgani uchun kasr qism (.5) tashlab yuboriladi."],
+[2,"\"Cyber university\" kiritilsa, a o‘zgaruvchisiga nima saqlanadi?","Cyber","Cyber university","university","Bo‘sh satr","string a;\ncin >> a; // Kirish: Cyber university\ncout << a;","cin >> oqimi probelgacha bo‘lgan birinchi so‘znigina o‘qiydi."],
+[2,"const kalit so‘zi nima uchun ishlatiladi?","O‘zgarmas kattalik e’lon qilish uchun","Butun son e’lon qilish uchun","Ma’lumot kiritish uchun","Sikl yaratish uchun","const double PI = 3.14;\ncout << PI;","const bilan e'lon qilingan o‘zgaruvchi qiymatini keyinchalik o‘zgartirib bo‘lmaydi."],
+[2,"0.1 + 0.2 == 0.3 ifodasi C++ da qanday natija beradi?","false (0)","true (1)","0.3","Xato","cout << (0.1 + 0.2 == 0.3);","Suzuvchi nuqtali sonlar ikkilik sanoqda aniq saqlanmagani uchun 0 (false) chiqadi."],
+[2,"Quyidagi kod ekranga nima chiqaradi?","5.10","5.1","5.100","5","cout << fixed << setprecision(2) << 5.1;","fixed va setprecision(2) nuqtadan keyin aniq 2 ta raqam chiqarishni ta'minlaydi."],
+[2,"Bo‘lish va qoldiq olish natijasini toping:","3 1","3.5 1","3 3","4 1","int a = 7, b = 2;\ncout << a / b << \" \" << a % b;","7 / 2 = 3 (butun qism), 7 % 2 = 1 (qoldiq)."],
+[2,"unsigned turi qaysi qiymatlarni saqlay olmaydi?","Manfiy sonlarni","Nolni","Musbat sonlarni","Butun sonlarni",null,"unsigned (ishorasiz) tur faqat 0 va musbat sonlarni saqlaydi."],
+[2,"auto x = 3.14; da x qaysi turga ega bo‘ladi?","double","int","float","string","auto x = 3.14;\ncout << sizeof(x);","O‘nli kasr literallari sukut bo‘yicha double (8 bayt) turida olinadi."],
+[2,"Pre-inkrement va post-inkrement natijasini toping:","6 6","5 6","6 7","5 5","int a = 5;\ncout << ++a << \" \" << a++;","++a avval 6 qiladi va 6 chiqaradi; a++ avval 6 ni chiqarib keyin 7 qiladi."],
+[2,"Arifmetik amallar ustuvorligi bo‘yicha natija nima?","14","20","10","16","cout << 2 + 3 * 4;","Ko‘paytirish (*) qo‘shish (+) dan ustun: 3 * 4 = 12, 2 + 12 = 14."],
+[2,"Mantiqiy ifoda natijasini toping:","1","0","true","false","int x = 5;\ncout << (x > 2 && x < 4);","x > 2 rost (1), x < 4 yolg‘on (0). 1 && 0 = 0."],
+[2,"Type casting (turga keltirish) natijasi nima?","2.5","2","2.0","3","int a = 5, b = 2;\ncout << (double)a / b;","(double)a 5.0 ga aylanadi, 5.0 / 2 = 2.5."],
+
+// ==================== 3-MAVZU (15 ta) ====================
+[3,"Quyidagi kod ekranga nima chiqaradi?","Rost","Hech narsa chiqmaydi","Kompilyatsiya xatosi","Yolg‘on","int x = 0;\nif (x = 5) cout << \"Rost\";","if ichida == o‘rniga = (tayinlash) yozilgan. x ga 5 beriladi va 5 != 0 bo‘lgani uchun true."],
+[3,"switch da break yozilmasa nima bo‘ladi?","Keyingi case ham bajariladi (fallthrough)","Dastur to‘xtaydi","Faqat default bajariladi","Kompilyatsiya xatosi",null,"break bo‘lmasa boshqaruv keyingi case bloklariga ham o‘tib ketadi."],
+[3,"switch ifodasida qaysi tur ishlatilmaydi?","double (float)","int","char","enum",null,"switch faqat butun va belgi turlari (int, char, enum, bool) bilan ishlaydi."],
+[3,"score = 85 bo‘lganda natija nima bo‘ladi?","B","A","C","D","int score = 85;\nif(score>=90) cout<<\"A\";\nelse if(score>=80) cout<<\"B\";\nelse cout<<\"C\";","85 >= 90 yolg‘on, keyingi shart 85 >= 80 rost bo‘lgani uchun 'B' chiqadi."],
+[3,"Ternar operator natijasini toping:","20","10","30","1","int a = 10, b = 20;\ncout << ((a > b) ? a : b);","a > b yolg‘on, shuning uchun ':' dan keyingi qiymat (b = 20) tanlanadi."],
+[3,"if (0 < x < 10) yozuvi nimasi bilan xato?","Oraliq 0 < x && x < 10 shaklida yozilishi kerak","|| ishlatish kerak","Qavs yetishmaydi","Xato yo‘q","int x = 15;\nif (0 < x < 10) cout << \"Ha\";","(0 < 15) -> 1 (true), keyin 1 < 10 -> 1 (true). Ya'ni x=15 bo‘lsa ham rost chiqib qoladi!"],
+[3,"Ikkinchi qator qachon ekranga chiqadi?","Har doim (qavs {} yo‘q)","Faqat x > 0 bo‘lsa","Hech qachon","Faqat x < 0 bo‘lsa","int x = -5;\nif (x > 0) cout << \"musbat \";\ncout << \"doim\";","Figurali qavs {} bo‘lmagani uchun if faqat birinchi operatorga tegishli."],
+[3,"Toq/juft tekshirish kodi natijasi nima?","Toq","Juft","7","1","int x = 7;\ncout << (x % 2 == 0 ? \"Juft\" : \"Toq\");","7 % 2 = 1 != 0, demak shart yolg‘on va \"Toq\" chiqadi."],
+[3,"else if zanjirida bir nechta shart rost bo‘lsa nima bo‘ladi?","Birinchi rost shartning bloki bajariladi","Hammasining bloki bajariladi","Oxirgisi bajariladi","Xato beradi",null,"Birinchi rost shart bajarilgach, zanjirning qolgan qismi tashlab ketiladi."],
+[3,"switch da default nima uchun kerak?","Hech bir case mos kelmaganda bajariladi","Birinchi case ni almashtiradi","Siklni to‘xtatadi","Majburiy break vazifasini bajaradi",null,"default barcha case qiymatlari mos kelmagan holatni ushlaydi."],
+[3,"Quyidagi switch kodi natijasini toping:","IkkiUch","Ikki","BirIkkiUch","Uch","int x = 2;\nswitch(x) {\n case 1: cout << \"Bir\";\n case 2: cout << \"Ikki\";\n case 3: cout << \"Uch\";\n}","case 2 ga tushadi, break yo‘qligi sababli case 3 ham qo‘shilib bajariladi."],
+[3,"Ichma-ich if natijasini aniqlang:","Katta juft","Katta toq","Kichik","Hech narsa","int n = 12;\nif (n > 10) {\n if (n % 2 == 0) cout << \"Katta juft\";\n else cout << \"Katta toq\";\n}","12 > 10 rost va 12 % 2 == 0 rost, natija: Katta juft."],
+[3,"Mantiqiy INKOR (!) operatori natijasi nima?","0","1","5","-5","int a = 5;\ncout << !a;","Noldan farqli har qanday son true (1), uning inkori !true = 0."],
+[3,"Quyidagi kodda nechta so‘z chiqadi?","B","A","AB","Hech narsa","int a = 5, b = 10;\nif (a > b) cout << \"A\";\nelse if (b == 10) cout << \"B\";","a > b yolg‘on, b == 10 rost -> faqat B chiqadi."],
+[3,"switch bilan char ishlatilganda natija nima?","A'lo","Yaxshi","Qoniqarli","Xato","char baho = 'A';\nswitch(baho) {\n case 'A': cout << \"A'lo\"; break;\n default: cout << \"Boshqa\";\n}","baho == 'A' mos keladi va break tufayli switch darhol tugaydi."],
+
+// ==================== 4-MAVZU (15 ta) ====================
+[4,"Quyidagi for sikli natijasini toping:","1 2 3 4 5 6 7 8 9 10","0 1 2 ... 9","1 2 3 ... 9","2 3 4 ... 10","for (int i = 1; i <= 10; i++)\n cout << i << \" \";","i 1 dan boshlanib 10 gacha (10 ham kiradi) bir qadamdan oshadi."],
+[4,"for siklining qismlari tartibi qanday?","boshlang‘ich ifoda; shart; qadam","shart; qadam; boshlang‘ich ifoda","qadam; shart; boshlang‘ich ifoda","shart; boshlang‘ich ifoda; qadam",null,"for(init; condition; increment) tartibida yoziladi."],
+[4,"Iteratsiya nima?","Sikl tanasining bir marta bajarilishi","Sikldan chiqish","Shart xatosi","O‘zgaruvchi e’loni",null,"Siklning har bir takrorlanish qadami iteratsiya deyiladi."],
+[4,"Range-based for sikli natijasini toping:","S a l o m","Salom 5","m o l a S","S","string s = \"Salom\";\nfor (char c : s) cout << c << \" \";","Satrning har bir belgisi ketma-ket olinib, yoniga probel qo‘shib chiqariladi."],
+[4,"Takrorlanish soni oldindan ma’lum bo‘lganda qaysi sikl eng qulay?","for","switch","if-else","main",null,"Aniq takrorlanishlar soni berilganda for sikli eng ixcham va tushunarli."],
+[4,"Quyidagi kod natijasini toping:","UZBEKISTAN","uzbekistan","Uzbekistan","Xato","string m = \"uzbekistan\";\nfor (char c : m) cout << (char)toupper(c);","Har bir belgi katta harfga o‘tkazilib chop etiladi."],
+[4,"continue operatori nima qiladi?","Joriy iteratsiyani tashlab, keyingisiga o‘tadi","Siklni butunlay to‘xtatadi","Dasturni tugatadi","Sikl o‘zgaruvchisini 0 qiladi","for(int i=1; i<=5; i++){\n if(i==3) continue;\n cout << i;\n}","i=3 bo‘lganda continue ishlaydi va 3 chop etilmaydi: 1245."],
+[4,"break operatori nima qiladi?","Siklni to‘xtatib, undan chiqadi","Keyingi iteratsiyaga o‘tadi","Sikl shartini o‘zgartiradi","Funksiyani chaqiradi","for(int i=1; i<=5; i++){\n if(i==3) break;\n cout << i;\n}","i=3 bo‘lganda break siklni butunlay to‘xtatadi: 12."],
+[4,"0 dan 3 gacha (3 kirmaydi) sikl natijasi:","012","123","0123","321","for (int i = 0; i < 3; i++) cout << i;","i = 0, 1, 2 qiymatlari uchun bajariladi."],
+[4,"while sikli natijasini toping:","012","123","3","Cheksiz sikl","int i = 0;\nwhile (i < 3) { cout << i; i++; }","i = 0, 1, 2 chiqadi; i = 3 bo‘lganda shart yolg‘on bo‘ladi."],
+[4,"Ichma-ich siklda nechta * belgisi chiqadi?","6","5","8","3","for (int i=1; i<=3; i++)\n for (int j=1; j<=2; j++) cout << \"*\";","Tashqi sikl 3 marta, ichki sikl 2 marta: 3 * 2 = 6 ta yulduzcha."],
+[4,"do-while sikli while dan nimasi bilan farq qiladi?","Shart yolg‘on bo‘lsa ham kamida 1 marta bajariladi","Hech qachon bajarilmaydi","Faqat for o‘rnida ishlaydi","Shart boshida tekshiriladi","int x = 10;\ndo { cout << x; } while (x < 5);","do-while avval tanani bajaradi (10 chiqadi), keyin shartni tekshiradi."],
+[4,"1 dan 5 gacha sonlar yig‘indisi kodi natijasi:","15","10","5","120","int sum = 0;\nfor (int i = 1; i <= 5; i++) sum += i;\ncout << sum;","1 + 2 + 3 + 4 + 5 = 15."],
+[4,"Teskari sanovchi sikl natijasini toping:","3 2 1 ","3 2 1 0 ","1 2 3 ","Cheksiz sikl","for (int i = 3; i > 0; i--) cout << i << \" \";","i = 3, 2, 1 qiymatlari chop etiladi."],
+[4,"Qadam 2 ga oshirilganda natija nima bo‘ladi?","0 2 4 ","0 1 2 3 4 ","2 4 ","0 2 4 6 ","for (int i = 0; i <= 5; i += 2) cout << i << \" \";","i qiymatlari: 0, 2, 4 (keyingisi 6 > 5 bo‘ladi)."],
+
+// ==================== 5-MAVZU (15 ta) ====================
+[5,"Funksiya nima?","Ma’lum vazifani bajaruvchi, bir marta yozilib ko‘p marta ishlatiladigan kod bo‘lagi","Faqat kutubxona nomi","O‘zgaruvchi turi","Takrorlanuvchi sikl",null,"Funksiyalar kodni modullarga bo‘lish va qayta ishlatish imkonini beradi."],
+[5,"void funksiya haqida qaysi gap to‘g‘ri?","Qiymat qaytarmaydi","Doim int qaytaradi","Faqat main bo‘la oladi","return majburiy","void salom() {\n cout << \"Assalomu alaykum!\";\n}","void — bo‘sh tur, ya'ni funksiya hech qanday qiymat qaytarmaydi."],
+[5,"pow(2, 3) funksiyasi natijasi nima?","8","6","9","5","#include <cmath>\ncout << pow(2, 3);","pow(2, 3) 2 ning 3-darajasini (2^3 = 8) hisoblaydi."],
+[5,"s.find(\"Dunyo\") qaysi indeksni qaytaradi?","6","5","7","11","string s = \"Salom Dunyo\";\ncout << s.find(\"Dunyo\");","S(0) a(1) l(2) o(3) m(4) ' '(5) D(6) -> \"Dunyo\" 6-indeksdan boshlanadi."],
+[5,"s.substr(0, 5) natijasi nima?","Salom","Salo","Dunyo","Salom D","string s = \"Salom Dunyo\";\ncout << s.substr(0, 5);","0-indeksdan boshlab 5 ta belgi kesib olinadi: \"Salom\"."],
+[5,"stoi(\"123\") funksiyasi nima qaytaradi?","123 butun son (int)","\"123\" matn","3","123.0 (double)","int x = stoi(\"123\") + 7;\ncout << x;","stoi (String to Int) matnni butun songa aylantiradi: 123 + 7 = 130."],
+[5,"isalpha('5') natijasi qanday bo‘ladi?","0 (harf emas)","1","'5'","Xato","cout << isalpha('5');","'5' raqam bo‘lgani uchun isalpha 0 (false) qaytaradi."],
+[5,"toupper('a') natijasi (char ga o‘girilganda) nima?","'A'","'a'","97","'Z'","cout << (char)toupper('a');","Kichik 'a' harfini katta 'A' harfiga aylantiradi."],
+[5,"sqrt(16) natijasi nima?","4","8","256","2","cout << sqrt(16);","16 ning kvadrat ildizi 4 ga teng."],
+[5,"ceil(2.3) va floor(2.7) natijalari mos ravishda nima?","3 va 2","2 va 3","3 va 3","2 va 2","cout << ceil(2.3) << \" \" << floor(2.7);","ceil tepaga yaxlitlaydi (3), floor pastga yaxlitlaydi (2)."],
+[5,"abs(-5) funksiyasi natijasi nima?","5","-5","0","25","cout << abs(-5);","abs() sonning modulini (mutlaq qiymatini) qaytaradi."],
+[5,"Quyidagi kvadrat funksiyasi natijasi nima?","49","14","77","7","int kvadrat(int n) { return n * n; }\ncout << kvadrat(7);","n = 7 uzatiladi, 7 * 7 = 49 qaytariladi."],
+[5,"Sukut bo‘yicha parametr (default parameter) natijasini toping:","15","10","5","Xato","int qosh(int a, int b = 5) { return a + b; }\ncout << qosh(10);","b berilmagani uchun sukut bo‘yicha 5 olinadi: 10 + 5 = 15."],
+[5,"max(14, 29) va min(14, 29) ayirmasi nechaga teng?","15","-15","43","14","cout << max(14, 29) - min(14, 29);","max = 29, min = 14. 29 - 14 = 15."],
+[5,"to_string(45) + \"6\" natijasi nima bo‘ladi?","456","51","45 6","Xato","cout << to_string(45) + \"6\";","to_string(45) matnga aylanadi, \"45\" + \"6\" = \"456\"."],
+
+// ==================== 6-MAVZU (15 ta) ====================
+[6,"Qiymat bo‘yicha uzatishda son nechaga teng bo‘lib qoladi?","20","100","0","Xato","void ozgartir(int x) { x = 100; }\nint son = 20;\nozgartir(son);\ncout << son;","x — son ning nusxasi, shuning uchun asl o‘zgaruvchi 20 ligicha qoladi."],
+[6,"Havola (&) orqali uzatilganda son nechaga o‘zgaradi?","20","10","0","Xato","void f(int &x) { x = 20; }\nint son = 10;\nf(son);\ncout << son;","&x asl son o‘zgaruvchisining xotira manziliga bog‘lanadi va uni 20 qiladi."],
+[6,"const string &matn parametri nima uchun kerak?","Nusxa olinmaydi va qiymatni o‘zgartirib bo‘lmaydi","Qiymatni tezda o‘zgartiradi","Faqat int bilan ishlaydi","Funksiyani qayta yuklaydi",null,"Katta satrlarni xotirada nusxalamasdan xavfsiz o‘qish uchun ishlatiladi."],
+[6,"Funksiyani qayta yuklash (overloading) nima?","Bir xil nomli, lekin parametrlari farqli funksiyalar","Funksiyaning o‘zini chaqirishi","Bir xil parametrli ikki funksiya","Tayyor kutubxona funksiyasi",null,"Parametrlar soni yoki turi har xil bo‘lsa, bir xil nomli funksiyalar yozish mumkin."],
+[6,"Rekursiyada bazaviy holat (base case) bo‘lmasa nima bo‘ladi?","Cheksiz chaqiruv va Stack Overflow","Dastur tezroq ishlaydi","Kompilyator tuzatadi","0 qaytariladi",null,"To‘xtash sharti bo‘lmasa stek xotirasi to‘lib dastur qulaydi."],
+[6,"faktorial(5) rekursiv funksiyasi natijasini toping:","120","24","25","15","int fakt(int n) {\n if (n <= 1) return 1;\n return n * fakt(n - 1);\n}\ncout << fakt(5);","5 * 4 * 3 * 2 * 1 = 120."],
+[6,"Overloading: qoshish(4.5, 3.2) qaysi versiyani chaqiradi?","double versiyasi, 7.7","int versiyasi, 7","Xato","int versiyasi, 8","int qosh(int a, int b) { return a+b; }\ndouble qosh(double a, double b) { return a+b; }\ncout << qosh(4.5, 3.2);","Argumentlar kasr son (double) bo‘lgani uchun double versiyasi tanlanadi."],
+[6,"raqamlarYigindisi(123) rekursiyasi natijasi nima?","6","3","123","321","int sumD(int n) {\n if (n == 0) return 0;\n return (n % 10) + sumD(n / 10);\n}\ncout << sumD(123);","3 + 2 + 1 + 0 = 6."],
+[6,"Fibonachchi rekursiyasi: fib(6) nechaga teng?","8","5","13","6","int fib(int n) {\n if (n <= 1) return n;\n return fib(n-1) + fib(n-2);\n}\ncout << fib(6);","0, 1, 1, 2, 3, 5, 8 -> 6-had 8 ga teng."],
+[6,"Qiymat bo‘yicha uzatishda funksiya nimani oladi?","O‘zgaruvchining nusxasini","Asl xotira manzilini","Faqat o‘qish huquqini","Hech narsani",null,"Pass-by-value usulida qiymat nusxalanib lokal parametrga beriladi."],
+[6,"Bir nechta qiymatni qaytarish kerak bo‘lganda qaysi usul qulay?","Havola bo‘yicha uzatish (&)","Qiymat bo‘yicha uzatish","switch operatori","Izohlar",null,"void hisobla(int a, int b, int &yig, int &kop) kabi bir nechta natijani olish mumkin."],
+[6,"Rekursiv funksiya qaysi ikki qismdan iborat?","Bazaviy holat va rekursiv qadam","Kirish va chiqish","main va return","Sikl va shart",null,"Har bir rekursiya to‘xtash sharti (base case) va muammoni kichraytiruvchi qadamdan iborat."],
+[6,"Rekursiv daraja funksiyasi natijasini toping:","32","10","25","16","int daraja(int a, int d) {\n if (d == 0) return 1;\n return a * daraja(a, d - 1);\n}\ncout << daraja(2, 5);","2^5 = 2 * 2 * 2 * 2 * 2 = 32."],
+[6,"Ikkita sonni almashtiruvchi (swap) funksiya natijasi:","9 4","4 9","4 4","9 9","void almash(int &a, int &b) {\n int t = a; a = b; b = t;\n}\nint x = 4, y = 9;\nalmash(x, y);\ncout << x << \" \" << y;","Havola (&) ishlatilgani uchun x va y qiymatlari haqiqatdan almashadi."],
+[6,"Rekursiv teskari sanash funksiyasi ekranga nima chiqaradi?","3 2 1 ","1 2 3 ","3 ","Cheksiz sikl","void sanash(int n) {\n if (n == 0) return;\n cout << n << \" \";\n sanash(n - 1);\n}\nsanash(3);","Avval n chop etiladi (3), keyin sanash(2) -> 2, keyin sanash(1) -> 1."],
+
+// ==================== 7-MAVZU (15 ta) ====================
+[7,"int A[5] massivining oxirgi elementi qaysi?","A[4]","A[5]","A[6]","A[0]",null,"C++ da massiv indekslari 0 dan boshlanadi: 0, 1, 2, 3, 4."],
+[7,"Qisman initsializatsiya qilinganda massiv qanday bo‘ladi?","1 2 0 0 0","1 2 (qolganlari tasodifiy)","1 2 2 2 2","Xato","int D[5] = {1, 2};\nfor(int i=0; i<5; i++) cout << D[i] << \" \";","Berilmagan qolgan elementlar avtomatik 0 bilan to‘ldiriladi."],
+[7,"Quyidagi massivda A[9] qiymati nechaga teng?","81","18","100","99","int A[10];\nfor (int i = 0; i < 10; i++) A[i] = i * i;\ncout << A[9];","i = 9 bo‘lganda A[9] = 9 * 9 = 81."],
+[7,"N ta elementli massivni aylanib chiqish uchun “oltin shablon” qaysi?","for (int i = 0; i < N; i++)","for (int i = 0; i <= N; i++)","for (int i = 1; i < N; i++)","for (int i = 0; i < N; i--)",null,"Indeks 0 dan N-1 gacha davom etishi kerak (i < N)."],
+[7,"(float)sum / count da float nima uchun yoziladi?","int / int da kasr qismi tashlanmasligi uchun","Tezroq ishlashi uchun","Kompilyator talabi","Xotira tejash uchun",null,"O‘rtacha qiymatni aniq kasr son ko‘rinishida olish uchun."],
+[7,"a + rand() % (b - a + 1) formulasi a=20, b=100 da qaysi oraliqni beradi?","[20; 100]","[20; 99]","[0; 80]","[21; 100]",null,"20 + rand() % 81 -> 20 + [0..80] = [20; 100]."],
+[7,"int E[] = {4, 8, 15}; massiv o‘lchami nechta?","3","4","15","Xato","int E[] = {4, 8, 15};\ncout << sizeof(E) / sizeof(E[0]);","3 ta element berilgani uchun kompilyator o‘lchamni 3 qilib belgilaydi."],
+[7,"Chiziqli qidiruvda indeks o‘zgaruvchisiga boshida -1 berilishining sababi nima?","Indeks manfiy bo‘lmaydi, -1 — hali topilmadi","Massiv uzunligi -1","Sikl tezlashadi","Kompilyator talabi",null,"0 haqiqiy birinchi indeks bo‘lgani uchun topilmaganlik belgisi sifatida -1 olinadi."],
+[7,"Eng katta elementni topishda sikl nega odatda i = 1 dan boshlanadi?","A[0] allaqachon max ga olingan","A[0] mavjud emas","Xotira tejaladi","Indeks 1 dan boshlanadi","int A[4] = {5, 9, 2, 7};\nint mx = A[0];\nfor(int i=1; i<4; i++) if(A[i]>mx) mx=A[i];\ncout << mx;","A[0] boshlang‘ich maksimum deb olingani uchun uni o‘zi bilan solishtirish shart emas."],
+[7,"Massiv nima?","Xotirada ketma-ket joylashgan, bir xil turdagi qiymatlar to‘plami","Turli turdagi qiymatlar to‘plami","Funksiya turi","Sikl operatori",null,"Massivning barcha elementlari bir xil ma'lumot turiga ega bo‘ladi."],
+[7,"int A[5]; A[5] = 1; yozilsa nima sodir bo‘ladi?","Chegaradan chiqish: kutilmagan natija yoki dastur buziladi","To‘g‘ri ishlaydi","Massiv avtomatik kattalashadi","Hech narsa bo‘lmaydi",null,"A[5] uchun oxirgi ruxsat etilgan indeks A[4], A[5] xotira chegarasidan tashqarida."],
+[7,"Massiv elementlari yig‘indisini toping:","6","8","5","9","int A[4] = {2, -1, 7, 0};\ncout << A[1] + A[2];","A[1] = -1, A[2] = 7. -1 + 7 = 6."],
+[7,"Quyidagi kodda ms[2] qiymati nechaga teng bo‘ladi?","9","7","11","13","int ms[5], a = 3;\nfor (int i = 4; i >= 0; i--) {\n a += 2;\n ms[i] = a;\n}\ncout << ms[2];","i=4 -> ms[4]=5; i=3 -> ms[3]=7; i=2 -> ms[2]=9."],
+[7,"Massivdagi juft sonlar sonini hisoblovchi kod natijasi:","3","2","4","1","int a[] = {4, 7, 10, 3, 8};\nint cnt = 0;\nfor(int x : a) if(x % 2 == 0) cnt++;\ncout << cnt;","Juft sonlar: 4, 10, 8 — jami 3 ta."],
+[7,"Massivni teskari tartibda chiqarish kodi natijasi:","30 20 10 ","10 20 30 ","30 20 ","20 10 ","int a[3] = {10, 20, 30};\nfor(int i = 2; i >= 0; i--) cout << a[i] << \" \";","Indeks 2, 1, 0 tartibida yurib 30 20 10 chiqaradi."],
+
+// ==================== 8-MAVZU (15 ta) ====================
+[8,"int A[N][M]; e’lonida N va M nimani bildiradi?","N — satrlar, M — ustunlar soni","N — ustunlar, M — satrlar soni","Ikkalasi ham satrlar soni","Faqat elementlar qiymati",null,"Birinchi indeks satrni (row), ikkinchi indeks ustunni (column) bildiradi."],
+[8,"Ikki o‘lchamli massivning barcha elementlarini aylanib chiqish uchun nima kerak?","Ichma-ich ikkita sikl","Faqat bitta while","Rekursiya","switch",null,"Tashqi sikl satrlar bo‘yicha, ichki sikl ustunlar bo‘yicha yuradi."],
+[8,"Bubble Sort (pufaksimon saralash) har bir to‘liq aylanishda nima qiladi?","Eng katta qiymatni massiv oxiriga siljitadi","Eng kichik qiymatni oxiriga siljitadi","Massivni teskari qiladi","Massivni ikkiga bo‘ladi",null,"Qo‘shni elementlarni solishtirib, kattasini o‘ngga surib boradi."],
+[8,"Selection Sort (tanlash orqali saralash) qanday ishlaydi?","Saralanmagan qismdagi eng kichikni topib, birinchi o‘rin bilan almashtiradi","Qo‘shni elementlarni taqqoslaydi","Massivni yarmiga bo‘ladi","Tasodifiy o‘rin almashtiradi",null,"Har qadamda minimum element tanlanib o‘z joyiga qo‘yiladi."],
+[8,"sort(v.begin(), v.end(), greater<int>()); qanday saralaydi?","Kamayish tartibida","O‘sish tartibida","Tasodifiy","Saralamaydi",null,"greater<int>() komparatori elementlarni kattadan kichikka (kamayish) tartiblaydi."],
+[8,"Binary Search (ikkilik qidiruv) vaqt murakkabligi qanday?","O(log N)","O(1)","O(N)","O(N^2)",null,"Har qadamda qidiruv sohasi 2 barobar qisqargani uchun O(log N)."],
+[8,"N x N matritsani to‘liq aylanib chiqishning vaqt murakkabligi?","O(N^2)","O(N)","O(log N)","O(1)",null,"N ta satr va N ta ustun: N * N = N^2 operatsiya."],
+[8,"Katta O (Big O) algoritmning qaysi holatini ko‘rsatadi?","Eng yomon holatini (worst-case)","Eng yaxshi holatini","Faqat xotira rangini","Kompilyator turini",null,"Big O kirish hajmi oshganda algoritmning yuqori o‘sish chegarasini ifodalaydi."],
+[8,"Bubble Sort algoritmining vaqt murakkabligi?","O(N^2)","O(N)","O(log N)","O(1)",null,"Ikkita ichma-ich sikl sababli o‘rtacha va eng yomon holatda O(N^2)."],
+[8,"int A[3][4]; matritsasida jami nechta element bor?","12","7","3","4",null,"3 ta satr * 4 ta ustun = 12 ta element."],
+[8,"Quyidagilardan qaysi biri O(1) vaqt murakkabligiga misol?","arr[5] elementini olish","Bubble Sort","Barcha elementlarni chiqarish","N x N matritsani aylanish",null,"Indeks orqali to‘g‘ridan-to‘g‘ri murojaat massiv hajmidan qat'i nazar O(1) vaqt oladi."],
+[8,"Saralashdan keyin birinchi va oxirgi element nima bo‘ladi?","4 99","42 4","99 4","8 99","int a[] = {42, 15, 8, 99, 23, 4};\nsort(a, a + 6);\ncout << a[0] << \" \" << a[5];","sort o‘sish tartibida saralaydi: {4, 8, 15, 23, 42, 99}."],
+[8,"2D massivda aniq elementga murojaat natijasi:","6","2","5","8","int m[2][3] = {{1, 2, 3}, {4, 5, 6}};\ncout << m[1][2];","1-satr (ikkinchi qator) va 2-ustun (uchinchi element) = 6."],
+[8,"3x3 matritsaning bosh diagonali elementlari yig‘indisi:","15","12","9","45","int m[3][3] = {{1,2,3},{4,5,6},{7,8,9}};\nint s = 0;\nfor(int i=0; i<3; i++) s += m[i][i];\ncout << s;","Bosh diagonal (i == j): m[0][0]=1, m[1][1]=5, m[2][2]=9. Yig‘indi = 15."],
+[8,"Binary Search ishlashi uchun asosiy shart nima?","Massiv oldindan saralangan bo‘lishi shart","Massiv faqat juft sonlardan iborat bo‘lishi","Massiv hajmi 10 dan kichik bo‘lishi","Elementlar manfiy bo‘lishi",null,"Saralanmagan massivda o‘rtadagi element bilan solishtirib yarmini tashlab bo‘lmaydi."],
+
+// ==================== 9-MAVZU (15 ta) ====================
+[9,"'A' belgisining ASCII kodi nechaga teng?","65","97","48","90","cout << (int)'A';","ASCII jadvalida 'A' = 65, 'a' = 97, '0' = 48."],
+[9,"Belgili raqamni butun songa o‘tkazish natijasi:","8","56","48","0","char digit = '8';\nint n = digit - '0';\ncout << n;","'8' (56) - '0' (48) = 8."],
+[9,"char g[6] = \"Salom\"; massiv hajmi nega kamida 6 bo‘lishi kerak?","Oxirida '\\0' (null-terminator) belgisi uchun","Probel uchun","Indeks 0 dan boshlangani uchun","Xato, 5 yetarli",null,"C-satrlar oxirini bildirish uchun 1 baytlik '\\0' belgisi saqlanadi."],
+[9,"cin >> age; getline(cin, name); da getline nega bo‘sh o‘tib ketadi?","Buferda '\\n' qolgan (yechim: cin.ignore())","getline ishlamaydi","name e’lon qilinmagan","age juda katta",null,"cin >> Enter tugmasini ('\\n') buferda qoldiradi, getline esa uni bo‘sh satr deb o‘qiydi."],
+[9,"char next = 'C' + 1; natijada next nimaga teng?","'D'","'B'","'C'","'E'","char next = 'C' + 1;\ncout << next;","ASCII jadvalida 'C' dan keyingi belgi 'D' keladi."],
+[9,"for (char &c : text) siklida & belgisi nima beradi?","Asl matn belgilarini o‘zgartirish imkonini","Nusxa bilan ishlashni","Faqat o‘qishni","Tezlikni pasaytiradi",null,"Havola (&) orqali matn ichidagi harflarni bevosita almashtirish mumkin."],
+[9,"Kichik va katta harf ASCII kodlari farqi ('a' - 'A') nechaga teng?","32","1","26","65","cout << 'a' - 'A';","97 - 65 = 32."],
+[9,"char c[] = \"Salom\"; strlen(c) nechaga teng?","5","6","4","0","#include <cstring>\nchar c[] = \"Salom\";\ncout << strlen(c);","strlen '\\0' belgisini hisoblamaydi, faqat 5 ta harfni sanaydi."],
+[9,"Satrga belgi qo‘shish (+=) natijasi:","Salom!","Salom","!","Xato","string s = \"Salom\";\ns += \"!\";\ncout << s;","+= operatori satr oxiriga yangi matnni birlashtiradi (konkatenatsiya)."],
+[9,"Bo‘sh satr uchun s.empty() funksiyasi nima qaytaradi?","1 (true)","0 (false)","-1","Xato","string s = \"\";\ncout << s.empty();","Satr uzunligi 0 bo‘lsa empty() true (1) qaytaradi."],
+[9,"strcmp(a, b) == 0 nimani bildiradi?","Satrlar bir xil","Satrlar har xil","a katta","Xato bor",null,"C-satrlarni taqqoslashda 0 qaytarilishi ularning tengligini bildiradi."],
+[9,"s.replace(0, 5, \"Assalom\") natijasini toping:","Assalom Dunyo","Salom Assalom","Assalom","Salom Dunyo","string s = \"Salom Dunyo\";\ns.replace(0, 5, \"Assalom\");\ncout << s;","0-indeksdan 5 ta belgi (\"Salom\") o‘rniga \"Assalom\" qo‘yiladi."],
+[9,"Satr uzunligi va birinchi belgisini chiqaruvchi kod natijasi:","11S","10S","11o","5S","string s = \"Salom Dunyo\";\ncout << s.size() << s[0];","\"Salom Dunyo\" uzunligi 11 (probel bilan), s[0] esa 'S'."],
+[9,"ASCII ayirmasi orqali katta harfga o‘tkazish natijasi:","AB","ab","Ab","BA","string t = \"ab\";\nfor (char c : t) cout << (char)(c - 32);","'a'(97)-32 = 65('A'), 'b'(98)-32 = 66('B')."],
+[9,"Satrni teskari aylantirish (reverse) natijasi:","rebyC","Cyber","Cyb","reby","string s = \"Cyber\";\nreverse(s.begin(), s.end());\ncout << s;","reverse() satr belgilarini oxiridan boshiga qarab joylashtiradi."],
+
+// ==================== 10-MAVZU (15 ta) ====================
+[10,"Quyidagi C++ kod ekranga nima chiqaradi?","9","7","11","13","int ms[5], i, a = 3;\nfor (i = 4; i >= 0; i--) {\n    a += 2;\n    ms[i] = a;\n}\ncout << ms[2];","i=4: a=5, ms[4]=5; i=3: a=7, ms[3]=7; i=2: a=9, ms[2]=9."],
+[10,"Funksiya chaqiruvi natijasini toping:","49","14","77","7","int kvadrat(int n) {\n    return n * n;\n}\nint main() {\n    cout << kvadrat(7);\n}","7 * 7 = 49."],
+[10,"Saralashdan keyingi natijani aniqlang:","4 99","42 4","99 4","8 99","int a[] = {42, 15, 8, 99, 23, 4};\nsort(a, a + 6);\ncout << a[0] << \" \" << a[5];","Eng kichik element a[0]=4, eng kattasi a[5]=99."],
+[10,"Satr almashtirish kodi natijasi:","Assalom Dunyo","Salom Assalom","Assalom","Salom Dunyo","string s = \"Salom Dunyo\";\ns.replace(0, 5, \"Assalom\");\ncout << s;","\"Salom\" so‘zi \"Assalom\" ga almashtiriladi."],
+[10,"break siz switch kodi natijasini toping:","IkkiUch","Ikki","BirIkkiUch","Uch","int x = 2;\nswitch (x) {\n    case 1: cout << \"Bir\";\n    case 2: cout << \"Ikki\";\n    case 3: cout << \"Uch\";\n}","case 2 dan boshlab oxirigacha barcha holatlar bajariladi."],
+[10,"Sikl yig‘indisi natijasini toping:","15","10","5","120","int sum = 0;\nfor (int i = 1; i <= 5; i++)\n    sum += i;\ncout << sum;","1 + 2 + 3 + 4 + 5 = 15."],
+[10,"Rekursiv daraja hisoblash natijasi:","32","10","25","16","int daraja(int a, int d) {\n    if (d == 0) return 1;\n    return a * daraja(a, d - 1);\n}\ncout << daraja(2, 5);","2 * 2 * 2 * 2 * 2 = 32."],
+[10,"Satr o‘lchami va indekslash natijasi:","11S","10S","11o","5S","string s = \"Salom Dunyo\";\ncout << s.size() << s[0];","s.size() = 11, s[0] = 'S' -> 11S."],
+[10,"Post-inkrement va ko‘paytirish natijasi:","12","10","11","6","int x = 5;\nx++;\ncout << x * 2;","x++ dan so‘ng x = 6 bo‘ladi. 6 * 2 = 12."],
+[10,"ASCII ayirmasi bilan sikl natijasi:","AB","ab","Ab","BA","string t = \"ab\";\nfor (char c : t)\n    cout << (char)(c - 32);","'a'-32='A', 'b'-32='B' -> AB."],
+[10,"Ternar rekursiv faktorial natijasi:","24","10","16","12","int fakt(int n) {\n    return n <= 1 ? 1 : n * fakt(n - 1);\n}\ncout << fakt(4);","4 * 3 * 2 * 1 = 24."],
+[10,"Massivda ko‘rsatkich arifmetikasi natijasi:","30","10","20","40","int arr[] = {10, 20, 30, 40};\ncout << *(arr + 2);","arr + 2 uchinchi element manzilini ko‘rsatadi: 30."],
+[10,"While va qoldiq operatori natijasi:","321","123","6","12","int n = 123;\nwhile (n > 0) {\n    cout << n % 10;\n    n /= 10;\n}","Sonning raqamlari oxiridan boshlab chop etiladi: 3, 2, 1."],
+[10,"Mantiqiy qisqa tutashuv (short-circuit) natijasi:","5 1","6 1","5 0","6 0","int a = 5, b = 0;\nif (b != 0 && ++a > 5) cout << \"Ha\";\ncout << a << \" \" << (b == 0);","b != 0 yolg‘on bo‘lgani uchun ++a bajarilmaydi! a=5 ligicha qoladi."],
+[10,"Ichma-ich sikl va break natijasi:","00 01 10 11 ","00 01 02 10 11 12 ","00 10 ","01 11 ","for(int i=0; i<2; i++) {\n    for(int j=0; j<3; j++) {\n        if(j == 2) break;\n        cout << i << j << \" \";\n    }\n}","Ichki sikl j=2 da to‘xtaydi, tashqi sikl davom etadi: 00 01 10 11."]
+];
+
+// Simulyator uchun barcha kodli savollarni yig'ib olamiz (har bir mavzuda kodli misollar + qo'shimcha kodlar)
+var SIM_LIST = [];
+Q.forEach(function(item, idx){
+ if(item[6]) {
+  SIM_LIST.push({t: item[0], title: item[1], code: item[6], out: item[2], exp: item[7]});
+ }
+});
+// Har bir mavzudan kamida 5-10 ta kod simulyatsiyada bo'lishi uchun qo'shimcha kod bloklari:
+var EXTRA_SIM = [
+ {t:1, title:"O‘zgaruvchi va matnni birga chiqarish", code:"int yil = 2026;\ncout << \"Cyber University \" << yil;", out:"Cyber University 2026", exp:"Matn va butun son oqim (<<) orqali ketma-ket konsolga chiqariladi."},
+ {t:1, title:"Maxsus belgilar (\\t va \\n)", code:"cout << \"A\\tB\\nC\";", out:"A\tB\nC", exp:"\\t tabulyatsiya tashlaydi, \\n esa yangi qatorga o‘tkazadi."},
+ {t:2, title:"Qoldiqli bo‘lish zanjiri", code:"int x = 29;\ncout << x / 10 + x % 10;", out:"11", exp:"29 / 10 = 2 (o‘nliklar), 29 % 10 = 9 (birliklar). 2 + 9 = 11."},
+ {t:2, title:"Overflow (chegaradan oshish)", code:"unsigned short x = 0;\nx = x - 1;\ncout << x;", out:"65535", exp:"Ishorasiz 16-bitli 0 dan 1 ayirilsa, maksimal qiymat 65535 ga aylanadi."},
+ {t:3, title:"Murakkab mantiqiy shart", code:"int a = 4, b = 7;\nif ((a % 2 == 0) || (b < 0)) cout << \"OK\";\nelse cout << \"NO\";", out:"OK", exp:"a % 2 == 0 rost bo‘lgani uchun || (YOKI) operatori umumiy natijani rost qiladi."},
+ {t:4, title:"Faktorial sikl orqali", code:"int f = 1;\nfor(int i=1; i<=4; i++) f *= i;\ncout << f;", out:"24", exp:"1 * 1 * 2 * 3 * 4 = 24."},
+ {t:5, title:"Satr uzunligi va oxirgi belgi", code:"string s = \"Dasturlash\";\ncout << s[s.length() - 1];", out:"h", exp:"Uzunligi 10, oxirgi indeks 10 - 1 = 9 -> 'h'."},
+ {t:6, title:"Rekursiv yig‘indi", code:"int f(int n){ return n==1 ? 1 : n + f(n-1); }\ncout << f(5);", out:"15", exp:"5 + 4 + 3 + 2 + 1 = 15."},
+ {t:7, title:"Massiv elementlarini almashtirish", code:"int a[3] = {5, 10, 15};\nswap(a[0], a[2]);\ncout << a[0] << \" \" << a[2];", out:"15 5", exp:"swap() birinchi va oxirgi elementlar o‘rnini almashtiradi."},
+ {t:8, title:"2D massiv qator yig‘indisi", code:"int m[2][2] = {{3, 4}, {5, 6}};\ncout << m[1][0] + m[1][1];", out:"11", exp:"Ikkinchi qator (indeks 1): 5 + 6 = 11."}
+];
+EXTRA_SIM.forEach(function(e){ SIM_LIST.push(e); });
+
+var $=function(i){return document.getElementById(i)},L=['A','B','C','D'];
+var S={list:[],i:0,score:0,streak:0,ok:0,wrong:[],tl:20,tid:null,done:false,mode:0};
+
+function sh(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function show(id){['home','game','sim','end','bridge','jug'].forEach(function(x){$(x).classList.toggle('h',x!==id)});window.scrollTo(0,0)}
+
+function menu(){
+ clearInterval(S.tid);
+ var g=$('topics');g.innerHTML='';
+ var all=document.createElement('button');all.className='t all';
+ all.innerHTML='<b>🎲 Aralash imtihon (150 ta bazadan)</b><small>Barcha 10 ta mavzudan 30 ta tasodifiy savol</small>';
+ all.onclick=function(){start(0)};g.appendChild(all);
+ T.forEach(function(n,k){
+  var b=document.createElement('button');
+  var c=Q.filter(function(q){return q[0]===k+1}).length;
+  b.className='t';
+  b.innerHTML='<b>'+(k+1)+'-mavzu</b>'+n+'<br><small>'+c+' ta savol</small>';
+  b.onclick=function(){start(k+1)};
+  g.appendChild(b);
+ });
+ show('home');
+}
+
+function start(m){
+ S.mode=m;
+ var p=sh(Q.filter(function(q){return m===0||q[0]===m}));
+ if(m===0) p=p.slice(0,30);
+ S.list=p.map(function(q){return{t:q[0],q:q[1],a:q[2],o:sh(q.slice(2,6)),code:q[6],exp:q[7]}});
+ S.i=0;S.score=0;S.streak=0;S.ok=0;S.wrong=[];
+ show('game');ask();
+}
+
+function ask(){
+ var q=S.list[S.i];S.done=false;S.tl=20;
+ $('inf').textContent='Savol '+(S.i+1)+' / '+S.list.length+' · '+q.t+'-mavzu';
+ $('sc').textContent='⭐ '+S.score+'  🔥 '+S.streak;
+ $('pg').style.width=(S.i/S.list.length*100)+'%';
+ $('qt').textContent=q.q;
+
+ var cb=$('qcode');
+ if(q.code){cb.textContent=q.code;cb.classList.remove('h');}
+ else{cb.classList.add('h');}
+
+ $('fb').textContent='';$('fb').className='fb';
+ $('nx').classList.add('h');
+ $('qsimbox').classList.add('h');
+ $('qconsole').classList.add('h');
+ $('qtrace').classList.add('h');
+
+ var box=$('op');box.innerHTML='';
+ q.o.forEach(function(t,k){
+  var b=document.createElement('button');b.className='o';
+  var s=document.createElement('span');s.textContent=L[k];
+  b.appendChild(s);b.appendChild(document.createTextNode(t));
+  b.onclick=function(){pick(k)};box.appendChild(b);
+ });
+ tick();clearInterval(S.tid);
+ S.tid=setInterval(function(){S.tl--;tick();if(S.tl<=0)pick(-1)},1000);
+}
+
+function tick(){
+ var i=document.querySelector('#tm i');
+ i.style.width=(S.tl/20*100)+'%';
+ i.style.background=S.tl<=5?'var(--no)':'var(--ok)';
+}
+
+function pick(k){
+ if(S.done)return;
+ S.done=true;clearInterval(S.tid);
+ var q=S.list[S.i],bs=$('op').children,right=q.o.indexOf(q.a);
+ for(var j=0;j<bs.length;j++)bs[j].disabled=true;
+ bs[right].classList.add('ok');
+ if(k===right){
+  S.ok++;S.streak++;
+  var pts=100+S.tl*3+Math.min(S.streak-1,5)*10;
+  S.score+=pts;
+  $('fb').textContent='✅ To‘g‘ri! +'+pts+' ball';
+  $('fb').className='fb ok';
+ } else {
+  S.streak=0;
+  if(k>=0)bs[k].classList.add('no');
+  S.wrong.push(q);
+  $('fb').textContent=k<0?'⏰ Vaqt tugadi! To‘g‘ri javob yashil rangda.':'❌ Noto‘g‘ri! To‘g‘ri javob yashil rangda.';
+  $('fb').className='fb no';
+ }
+ $('sc').textContent='⭐ '+S.score+'  🔥 '+S.streak;
+
+ // Javob berilgandan keyin simulyatsiya va tushuntirish tugmasini ko'rsatish
+ if(q.code || q.exp){
+  $('qsimbox').classList.remove('h');
+  $('runBtn').textContent = q.code ? '▶ Kodni ishga tushirish (Simulyatsiya)' : '💡 Tushuntirishni ko‘rish';
+ }
+
+ $('nx').textContent=S.i===S.list.length-1?'Natijani ko‘rish 🏁':'Keyingi ▶';
+ $('nx').classList.remove('h');
+}
+
+function runQCode(){
+ var q=S.list[S.i];
+ if(q.code){
+  var con=$('qconsole');
+  con.classList.remove('h');
+  con.innerHTML='<b>$ ./dastur.exe</b>\nNatija: ' + escapeHtml(q.a);
+ }
+ if(q.exp){
+  var tr=$('qtrace');
+  tr.classList.remove('h');
+  tr.innerHTML='<b>🔍 Tahlil va simulyatsiya izohi:</b> ' + escapeHtml(q.exp);
+ }
+}
+
+function escapeHtml(s){
+ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function next(){if(S.i<S.list.length-1){S.i++;ask()}else fin()}
+
+function fin(){
+ clearInterval(S.tid);
+ var n=S.list.length,p=Math.round(S.ok/n*100);
+ $('et').textContent=p>=90?'🏆 Ajoyib natija!':p>=70?'👏 Juda yaxshi!':p>=50?'🙂 Yomon emas!':'📚 Yana mashq qiling!';
+ $('es').textContent=S.score+' ball';
+ $('ep').textContent='To‘g‘ri javoblar: '+S.ok+' / '+n+' ('+p+'%)';
+ var r=$('rv');r.innerHTML='';
+ if(S.wrong.length){
+  var h=document.createElement('h3');h.textContent='Xato qilingan savollar:';r.appendChild(h);
+  S.wrong.forEach(function(q){
+   var d=document.createElement('div');
+   d.textContent=q.q + (q.code ? '\n' + q.code : '');
+   d.style.whiteSpace='pre-wrap';
+   var s=document.createElement('small');s.textContent='✔ To‘g‘ri javob: '+q.a;
+   d.appendChild(s);r.appendChild(d);
+  });
+ } else {
+  var m=document.createElement('h3');m.textContent='🎉 Hech qanday xato yo‘q!';r.appendChild(m);
+ }
+ show('end');
+}
+
+$('nx').onclick=next;
+$('again').onclick=function(){start(S.mode)};
+$('menu').onclick=menu;
+
+document.addEventListener('keydown',function(e){
+ if(!$('game').classList.contains('h')){
+  if(!S.done&&e.key>='1'&&e.key<='4'&&S.list[S.i].o[+e.key-1]!==undefined)pick(+e.key-1);
+  else if(S.done&&e.key==='Enter'&&e.target.id!=='nx')next();
+ }
+});
+
+// ==================== KOD SIMULYATORI BO'LIMI ====================
+var SIM={filtered:[], idx:0, solved:0};
+
+function simInit(topicId){
+ var sel=$('simTopic');
+ if(!sel.options.length){
+  var opt0=document.createElement('option');opt0.value=0;opt0.textContent='Barcha mavzulardagi kodlar ('+SIM_LIST.length+' ta)';
+  sel.appendChild(opt0);
+  T.forEach(function(name, i){
+   var cnt=SIM_LIST.filter(function(x){return x.t===i+1}).length;
+   var o=document.createElement('option');o.value=i+1;o.textContent=(i+1)+'-mavzu: '+name+' ('+cnt+' ta)';
+   sel.appendChild(o);
+  });
+ }
+ sel.value=topicId;
+ simFilter(topicId);
+ show('sim');
+}
+
+function simFilter(topicId){
+ var tid=parseInt(topicId,10);
+ SIM.filtered = tid===0 ? sh(SIM_LIST) : SIM_LIST.filter(function(x){return x.t===tid});
+ SIM.idx=0;
+ simLoad();
+}
+
+function simLoad(){
+ if(!SIM.filtered.length) return;
+ var item=SIM.filtered[SIM.idx];
+ $('sinf').textContent='Kod '+(SIM.idx+1)+' / '+SIM.filtered.length+' · '+item.t+'-mavzu';
+ $('ssc').textContent='✅ Topilgan: '+SIM.solved;
+ $('scode').textContent='#include <iostream>\n#include <string>\n#include <algorithm>\n#include <cmath>\nusing namespace std;\n\nint main() {\n' + item.code.split('\n').map(function(l){return '    '+l}).join('\n') + '\n    return 0;\n}';
+ $('sinp').value='';
+ $('sfb').textContent='';$('sfb').className='fb';
+ $('scon').classList.add('h');
+ $('strace').classList.add('h');
+}
+
+function simCheck(){
+ var item=SIM.filtered[SIM.idx];
+ var userVal=$('sinp').value.trim();
+ var realVal=String(item.out).trim();
+ if(!userVal){
+  $('sfb').textContent='⚠ Avval kutilayotgan natijani kiriting!';
+  $('sfb').className='fb no';
+  return;
+ }
+ if(userVal.toLowerCase() === realVal.toLowerCase()){
+  SIM.solved++;
+  $('ssc').textContent='✅ Topilgan: '+SIM.solved;
+  $('sfb').textContent='🎉 Barakalla! Siz kiritgan natija mutlaqo to‘g‘ri!';
+  $('sfb').className='fb ok';
+  simRun();
+ } else {
+  $('sfb').textContent='❌ Noto‘g‘ri. Sizning javobingiz: "'+userVal+'". "▶ Kodni yurgizish" tugmasini bosib tekshiring!';
+  $('sfb').className='fb no';
+ }
+}
+
+function simRun(){
+ var item=SIM.filtered[SIM.idx];
+ var con=$('scon');
+ con.classList.remove('h');
+ con.innerHTML='<b>[Kompilyatsiya: g++ main.cpp -o main.exe — 0 xato]</b>\n<b>[Chiqish oqimi (stdout)]:</b>\n' + escapeHtml(item.out);
+}
+
+function simStep(){
+ var item=SIM.filtered[SIM.idx];
+ var tr=$('strace');
+ tr.classList.remove('h');
+ tr.innerHTML='<b>👣 Qadamma-qadam bajarilish tahlili:</b><br>' + escapeHtml(item.exp) + '<br><b>Kutilayotgan aniq chiqish:</b> <code>' + escapeHtml(item.out) + '</code>';
+}
+
+function simNext(){
+ if(!SIM.filtered.length) return;
+ SIM.idx = (SIM.idx + 1) % SIM.filtered.length;
+ simLoad();
+}
+
+// ==================== MANTIQ O'YINLARI ====================
+var BT={A:1,B:2,C:5,D:8},bp,bt,bs,btm;
+function bInit(){bp={A:0,B:0,C:0,D:0};bt=0;bs=[];btm=0;bR();show('bridge')}
+function bGo(){if(!bs.length)return;btm+=Math.max.apply(null,bs.map(function(k){return BT[k]}));bt=1-bt;bs.forEach(function(k){bp[k]=bt});bs=[];bR()}
+function bR(){var l=$('bl'),r=$('br');l.innerHTML='';r.innerHTML='';Object.keys(bp).forEach(function(k){var b=document.createElement('button');b.className='o';b.textContent=k+' — '+BT[k]+' daq';if(bs.indexOf(k)>-1)b.style.borderColor='var(--pr)';b.disabled=bp[k]!==bt;b.onclick=function(){var i=bs.indexOf(k);if(i>-1)bs.splice(i,1);else if(bs.length<2)bs.push(k);bR()};(bp[k]?r:l).appendChild(b)});
+ var w=Object.keys(bp).every(function(k){return bp[k]});
+ $('bi').textContent=w?(btm==15?'🏆 Ajoyib! Eng yaxshi natija — 15 daqiqa!':'Hamma o‘tdi: '+btm+' daqiqa. Eng yaxshi natija 15 — qayta urinib ko‘ring!'):'🔥 Chiroq '+(bt?'o‘ng':'chap')+' qirg‘oqda · Vaqt: '+btm+' daqiqa';$('bm').disabled=w||!bs.length}
+
+var ja,jb,jm,jd,JL=['9L to‘ldirish','4L to‘ldirish','9L ➔ 4L quyish','4L ➔ 9L quyish','9L bo‘shatish','4L bo‘shatish','🎯 Hajmni tasdiqlash'];
+function jI(){ja=0;jb=0;jm=0;jd={};var b=$('jbt');b.innerHTML='';JL.forEach(function(t,k){var e=document.createElement('button');e.className='o';e.textContent=t;e.onclick=function(){jo(k)};b.appendChild(e)});jR('Idishlar bo‘sh.');show('jug')}
+function jo(k){if(k==0)ja=9;else if(k==1)jb=4;else if(k==2){var x=Math.min(ja,4-jb);ja-=x;jb+=x}else if(k==3){var y=Math.min(jb,9-ja);jb-=y;ja+=y}else if(k==4)ja=0;else if(k==5)jb=0;
+ else{var n=0;[ja,jb].forEach(function(v){if(v>=1&&!jd[v]){jd[v]=1;n++}});jR(Object.keys(jd).length==9?'🏆 Ajoyib! Hammasi '+jm+' harakatda bajarildi!':n?'✅ Yangi hajm belgilandi!':'⚠ Yangi hajm yo‘q.');return}
+ jm++;jR('')}
+function jR(m){$('j9').textContent='9L: '+ja+'/9';$('j4').textContent='4L: '+jb+'/4';$('jmv').textContent='Harakatlar: '+jm;$('b9').style.width=ja/9*100+'%';$('b4').style.width=jb/4*100+'%';$('jst').textContent=m;var t=$('jt');t.innerHTML='';for(var i=1;i<=9;i++){var s=document.createElement('span');s.textContent=i+'L '+(jd[i]?'✅':'⬜');t.appendChild(s)}}
+
+menu();
+</script>
+</body>
+</html>
